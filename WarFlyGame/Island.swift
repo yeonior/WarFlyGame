@@ -8,12 +8,16 @@
 import SpriteKit
 import GameplayKit
 
-class Island: SKSpriteNode {
+protocol GameBackgroundSpriteable {
+    static func populateSprite(at point: CGPoint) -> Self
+}
+
+final class Island: SKSpriteNode, GameBackgroundSpriteable {
     
     // creation
-    static func populateIsland(at point: CGPoint) -> Island {
+    static func populateSprite(at point: CGPoint) -> Island {
         
-        let islandImageName = configureIslandName()
+        let islandImageName = configureName()
         let island = Island(imageNamed: islandImageName)
         island.setScale(randomScaleFactor)
         island.position = point
@@ -24,7 +28,7 @@ class Island: SKSpriteNode {
     }
     
     // image
-    static func configureIslandName() -> String {
+    static func configureName() -> String {
         
         let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 4)
         let randomNumber = distribution.nextInt()
