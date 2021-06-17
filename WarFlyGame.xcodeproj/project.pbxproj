@@ -13,6 +13,7 @@
 		A2746624267A721A00613B6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2746622267A721A00613B6C /* Main.storyboard */; };
 		A2746626267A721C00613B6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2746625267A721C00613B6C /* Assets.xcassets */; };
 		A2B00D66267B3DFE00E3C657 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B00D65267B3DFE00E3C657 /* Background.swift */; };
+		A2F702B5267B6AA50015170A /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F702B4267B6AA50015170A /* Island.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A2746625267A721C00613B6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2746627267A721C00613B6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A2B00D65267B3DFE00E3C657 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		A2F702B4267B6AA50015170A /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				A2746618267A721A00613B6C /* AppDelegate.swift */,
 				A274661E267A721A00613B6C /* GameScene.swift */,
+				A2F702B4267B6AA50015170A /* Island.swift */,
 				A2B00D65267B3DFE00E3C657 /* Background.swift */,
 				A2746620267A721A00613B6C /* GameViewController.swift */,
 				A2746622267A721A00613B6C /* Main.storyboard */,
@@ -139,6 +142,7 @@
 				A274661F267A721A00613B6C /* GameScene.swift in Sources */,
 				A2746621267A721A00613B6C /* GameViewController.swift in Sources */,
 				A2746619267A721A00613B6C /* AppDelegate.swift in Sources */,
+				A2F702B5267B6AA50015170A /* Island.swift in Sources */,
 				A2B00D66267B3DFE00E3C657 /* Background.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
