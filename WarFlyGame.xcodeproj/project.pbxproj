@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A224E9622680A64400CB898A /* PlayerPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = A224E9612680A64400CB898A /* PlayerPlane.swift */; };
 		A224E9642680A7BB00CB898A /* PlayerPlane.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A224E9632680A7BA00CB898A /* PlayerPlane.atlas */; };
+		A224E9662680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */; };
 		A2746619267A721A00613B6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2746618267A721A00613B6C /* AppDelegate.swift */; };
 		A274661F267A721A00613B6C /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A274661E267A721A00613B6C /* GameScene.swift */; };
 		A2746621267A721A00613B6C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2746620267A721A00613B6C /* GameViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		A224E9612680A64400CB898A /* PlayerPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerPlane.swift; sourceTree = "<group>"; };
 		A224E9632680A7BA00CB898A /* PlayerPlane.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = PlayerPlane.atlas; sourceTree = "<group>"; };
+		A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "protocol GameBackgroundSpriteable + Extensions.swift"; sourceTree = "<group>"; };
 		A2746615267A721A00613B6C /* WarFlyGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WarFlyGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2746618267A721A00613B6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A274661E267A721A00613B6C /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				A224E9612680A64400CB898A /* PlayerPlane.swift */,
 				A2F702B4267B6AA50015170A /* Island.swift */,
 				A2F702B6267BAD000015170A /* Cloud.swift */,
+				A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */,
 				A2B00D65267B3DFE00E3C657 /* Background.swift */,
 				A2746620267A721A00613B6C /* GameViewController.swift */,
 				A2746622267A721A00613B6C /* Main.storyboard */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A274661F267A721A00613B6C /* GameScene.swift in Sources */,
+				A224E9662680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift in Sources */,
 				A224E9622680A64400CB898A /* PlayerPlane.swift in Sources */,
 				A2F702B7267BAD000015170A /* Cloud.swift in Sources */,
 				A2746621267A721A00613B6C /* GameViewController.swift in Sources */,

@@ -18,6 +18,8 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         configureStartScene()
+        spawnIslands()
+        spawnClouds()
     }
     
     fileprivate func configureStartScene() {
@@ -32,13 +34,6 @@ class GameScene: SKScene {
         let screen = UIScreen.main.bounds
         
         // sprites
-        
-        let island1 = Island.populate(at: CGPoint(x: 100, y: 200))
-        self.addChild(island1)
-        
-        let island2 = Island.populate(at: CGPoint(x: 200, y: 300))
-        self.addChild(island2)
-        
         player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         self.addChild(player)
         
@@ -49,6 +44,34 @@ class GameScene: SKScene {
                 self.xAcceleration = CGFloat(acceleration.x) * 0.7 + self.xAcceleration * 0.3
             }
         }
+    }
+    
+    fileprivate func spawnIslands() {
+        
+        let spawnIslandWait = SKAction.wait(forDuration: 2)
+        let spawnIslandAction = SKAction.run {
+            let island = Island.populate()
+            self.addChild(island)
+        }
+        
+        let spawnIslandSequence = SKAction.sequence([spawnIslandWait, spawnIslandAction])
+        let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
+        
+        run(spawnIslandForever)
+    }
+    
+    fileprivate func spawnClouds() {
+        
+        let spawnCloudWait = SKAction.wait(forDuration: 1)
+        let spawnCloudAction = SKAction.run {
+            let cloud = Cloud.populate()
+            self.addChild(cloud)
+        }
+        
+        let spawnCloudSequence = SKAction.sequence([spawnCloudWait, spawnCloudAction])
+        let spawnCloudForever = SKAction.repeatForever(spawnCloudSequence)
+        
+        run(spawnCloudForever)
     }
     
     override func didSimulatePhysics() {
