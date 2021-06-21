@@ -11,13 +11,14 @@ import GameplayKit
 final class Cloud: SKSpriteNode, GameBackgroundSpriteable {
     
     // creation
-    static func populate() -> Cloud {
+    static func populate(at point: CGPoint?) -> Cloud {
         
         let cloudImageName = configureName()
         let cloud = Cloud(imageNamed: cloudImageName)
         cloud.setScale(randomScaleFactor)
-        cloud.position = randomPoint()
+        cloud.position = point ?? randomPoint()
         cloud.zPosition = 10
+        cloud.name = "backgroundSprite"
         cloud.run(move(from: cloud.position))
         
         return cloud
@@ -36,12 +37,13 @@ final class Cloud: SKSpriteNode, GameBackgroundSpriteable {
     // scaling
     fileprivate static var randomScaleFactor: CGFloat {
         
-        let distribution = GKRandomDistribution(lowestValue: 10, highestValue: 20)
+        let distribution = GKRandomDistribution(lowestValue: 15, highestValue: 30)
         let randomNumber = CGFloat(distribution.nextInt()) / 10
         
         return randomNumber
     }
     
+    // movement
     fileprivate static func move(from point: CGPoint) -> SKAction {
         
         let movePoint = CGPoint(x: point.x, y: -200)

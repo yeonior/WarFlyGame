@@ -11,26 +11,14 @@ import GameplayKit
 final class Island: SKSpriteNode, GameBackgroundSpriteable {
     
     // creation
-    static func populate() -> Island {
+    static func populate(at point: CGPoint?) -> Island {
         
         let islandImageName = configureName()
         let island = Island(imageNamed: islandImageName)
         island.setScale(randomScaleFactor)
-        island.position = randomPoint()
+        island.position = point ?? randomPoint()
         island.zPosition = 1
-        island.run(rotateForRandomAngle())
-        island.run(move(from: island.position))
-        
-        return island
-    }
-    
-    static func populate(at point: CGPoint) -> Island {
-        
-        let islandImageName = configureName()
-        let island = Island(imageNamed: islandImageName)
-        island.setScale(randomScaleFactor)
-        island.position = point
-        island.zPosition = 1
+        island.name = "backgroundSprite"
         island.run(rotateForRandomAngle())
         island.run(move(from: island.position))
         
@@ -50,7 +38,7 @@ final class Island: SKSpriteNode, GameBackgroundSpriteable {
     // scaling
     fileprivate static var randomScaleFactor: CGFloat {
         
-        let distribution = GKRandomDistribution(lowestValue: 1, highestValue: 10)
+        let distribution = GKRandomDistribution(lowestValue: 4, highestValue: 10)
         let randomNumber = CGFloat(distribution.nextInt()) / 10
         
         return randomNumber

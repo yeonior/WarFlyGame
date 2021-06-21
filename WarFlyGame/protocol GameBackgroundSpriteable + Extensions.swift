@@ -9,7 +9,7 @@ import SpriteKit
 import GameplayKit
 
 protocol GameBackgroundSpriteable {
-    static func populate() -> Self
+    static func populate(at point: CGPoint?) -> Self
     static func randomPoint() -> CGPoint
 }
 
