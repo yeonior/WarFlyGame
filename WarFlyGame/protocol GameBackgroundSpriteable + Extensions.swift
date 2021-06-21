@@ -17,7 +17,7 @@ extension GameBackgroundSpriteable {
     static func randomPoint() -> CGPoint {
         
         let screen = UIScreen.main.bounds
-        let distribution = GKRandomDistribution(lowestValue: Int(screen.size.height) + 100, highestValue: Int(screen.size.height) + 200)
+        let distribution = GKRandomDistribution(lowestValue: Int(screen.size.height) + 200, highestValue: Int(screen.size.height) + 300)
         let x = CGFloat(GKRandomSource.sharedRandom().nextInt(upperBound: Int(screen.size.width)))
         let y = CGFloat(distribution.nextInt())
         

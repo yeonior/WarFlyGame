@@ -56,9 +56,9 @@ final class Island: SKSpriteNode, GameBackgroundSpriteable {
     // movement
     fileprivate static func move(from point: CGPoint) -> SKAction {
         
-        let movePoint = CGPoint(x: point.x, y: -200)
-        let moveDistance = point.y + 200
-        let movementSpeed: CGFloat = 100.0
+        let movePoint = CGPoint(x: point.x, y: -300)
+        let moveDistance = point.y + 300
+        let movementSpeed: CGFloat = 80.0
         let duration = moveDistance / movementSpeed
         
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))

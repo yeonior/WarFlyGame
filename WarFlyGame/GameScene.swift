@@ -34,6 +34,13 @@ class GameScene: SKScene {
         let screen = UIScreen.main.bounds
         
         // sprites
+        let island1 = Island.populate(at: CGPoint(x: Int(screen.size.width) / 2 - 100, y: Int(screen.size.height) / 2 + 100))
+        self.addChild(island1)
+        let island2 = Island.populate(at: CGPoint(x: Int(screen.size.width) / 2 + 70, y: Int(screen.size.height) / 2 + 300))
+        self.addChild(island2)
+        let cloud = Cloud.populate(at: CGPoint(x: Int(screen.size.width) / 2 + 40, y: Int(screen.size.height) / 2 - 200))
+        self.addChild(cloud)
+        
         player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         self.addChild(player)
         
@@ -48,7 +55,7 @@ class GameScene: SKScene {
     
     fileprivate func spawnIslands() {
         
-        let spawnIslandWait = SKAction.wait(forDuration: 3)
+        let spawnIslandWait = SKAction.wait(forDuration: 4)
         let spawnIslandAction = SKAction.run {
             let island = Island.populate(at: nil)
             self.addChild(island)
@@ -62,7 +69,7 @@ class GameScene: SKScene {
     
     fileprivate func spawnClouds() {
         
-        let spawnCloudWait = SKAction.wait(forDuration: 1)
+        let spawnCloudWait = SKAction.wait(forDuration: 2)
         let spawnCloudAction = SKAction.run {
             let cloud = Cloud.populate(at: nil)
             self.addChild(cloud)
@@ -86,7 +93,7 @@ class GameScene: SKScene {
         }
         
         enumerateChildNodes(withName: "backgroundSprite") { node, _ in
-            if node.position.y < -100 {
+            if node.position.y < -200 {
                 node.removeFromParent()
             }
         }
