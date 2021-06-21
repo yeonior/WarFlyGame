@@ -9,13 +9,39 @@ import SpriteKit
 import GameplayKit
 
 protocol GameBackgroundSpriteable {
-    static func populateSprite(at point: CGPoint) -> Self
+    static func populate() -> Self
+    static func randomPoint() -> CGPoint
+}
+
+extension GameBackgroundSpriteable {
+    static func randomPoint() -> CGPoint {
+        
+        let screen = UIScreen.main.bounds
+        let distribution = GKRandomDistribution(lowestValue: Int(screen.size.height) + 100, highestValue: Int(screen.size.height) + 200)
+        let x = CGFloat(distribution.nextInt())
+        let y = CGFloat(GKRandomSource.sharedRandom().nextInt(upperBound: Int(screen.size.width)))
+        
+        return CGPoint(x: x, y: y)
+    }
 }
 
 final class Island: SKSpriteNode, GameBackgroundSpriteable {
     
     // creation
-    static func populateSprite(at point: CGPoint) -> Island {
+    static func populate() -> Island {
+        
+        let islandImageName = configureName()
+        let island = Island(imageNamed: islandImageName)
+        island.setScale(randomScaleFactor)
+        island.position = randomPoint()
+        island.zPosition = 1
+        island.run(rotateForRandomAngle())
+        island.run(move(from: island.position))
+        
+        return island
+    }
+    
+    static func populate(at point: CGPoint) -> Island {
         
         let islandImageName = configureName()
         let island = Island(imageNamed: islandImageName)
@@ -23,7 +49,7 @@ final class Island: SKSpriteNode, GameBackgroundSpriteable {
         island.position = point
         island.zPosition = 1
         island.run(rotateForRandomAngle())
-        island.run(move(from: point))
+        island.run(move(from: island.position))
         
         return island
     }
@@ -56,11 +82,12 @@ final class Island: SKSpriteNode, GameBackgroundSpriteable {
         return SKAction.rotate(byAngle: randomNumber * CGFloat(Double.pi / 180), duration: 0)
     }
     
+    // movement
     fileprivate static func move(from point: CGPoint) -> SKAction {
         
         let movePoint = CGPoint(x: point.x, y: -200)
         let moveDistance = point.y + 200
-        let movementSpeed: CGFloat = 10.0
+        let movementSpeed: CGFloat = 100.0
         let duration = moveDistance / movementSpeed
         
         return SKAction.move(to: movePoint, duration: TimeInterval(duration))
