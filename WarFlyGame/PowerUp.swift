@@ -37,7 +37,6 @@ class PowerUp: SKSpriteNode {
             let rotation = SKAction.animate(with: self.animationSpriteArray, timePerFrame: 0.05, resize: true, restore: false)
             let rotationForever = SKAction.repeatForever(rotation)
             self.run(rotationForever)
-            print("DONE")
         }
     }
 }

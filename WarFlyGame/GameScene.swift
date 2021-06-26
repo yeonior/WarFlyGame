@@ -81,24 +81,44 @@ class GameScene: SKScene {
         self.addChild(powerUp)
     }
     
-    fileprivate func spawnEnemies() {
+    fileprivate func spawnGroupOfEnemies() {
         
-        let spawnEnemiesWait = SKAction.wait(forDuration: 1)
-        let spawnEnemiesAction = SKAction.run {
-            let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
-            SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
-                Enemy.textureAtlas = enemyTextureAtlas
-                let enemy = Enemy()
-                enemy.position = CGPoint(x: self.size.width - 50, y: self.size.height + 50)
+        let spawnEnemyWait = SKAction.wait(forDuration: 1)
+        let spawnEnemyAction = SKAction.run { [unowned self] in
+            let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
+            let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+            SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
+                
+                let randomNumber = Int(arc4random_uniform(2))
+                let arrayofAtlases = [enemyTextureAtlas1, enemyTextureAtlas2]
+                let textureAtlas = arrayofAtlases[randomNumber]
+                let textureNamesSorted = textureAtlas.textureNames.sorted()
+                let enemyTexture = textureAtlas.textureNamed(textureNamesSorted[12])
+                
+                let enemy = Enemy(enemyTexture: enemyTexture)
+                enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 50)
                 enemy.flySpiral()
                 self.addChild(enemy)
             }
         }
         
-        let spawnEmemiesSequence = SKAction.sequence([spawnEnemiesWait, spawnEnemiesAction])
-        let spawnEnemiesrRepeating = SKAction.repeat(spawnEmemiesSequence, count: 10)
+        let spawnEmemySequence = SKAction.sequence([spawnEnemyWait, spawnEnemyAction])
+        let spawnEnemyRepeating = SKAction.repeat(spawnEmemySequence, count: 3)
         
-        run(spawnEnemiesrRepeating)
+        run(spawnEnemyRepeating)
+    }
+    
+    fileprivate func spawnEnemies() {
+        
+        let spawnEnemiesWait = SKAction.wait(forDuration: 5)
+        let spawnEmemiesAction = SKAction.run { [unowned self] in
+            self.spawnGroupOfEnemies()
+        }
+        
+        let spawnEmemiesSequence = SKAction.sequence([spawnEmemiesAction, spawnEnemiesWait])
+        let spawnEnemiesRepeating = SKAction.repeatForever(spawnEmemiesSequence)
+        
+        run(spawnEnemiesRepeating)
     }
     
     override func didSimulatePhysics() {
