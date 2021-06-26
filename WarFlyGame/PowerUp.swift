@@ -5,19 +5,24 @@
 //  Created by ruslan on 22.06.2021.
 //
 
-import UIKit
 import SpriteKit
 
 class PowerUp: SKSpriteNode {
     
-    let initialSize = CGSize(width: 52, height: 52)
-    let textureAtlas = SKTextureAtlas(named: "GreenPowerUp")
-    var animationSpriteArray = [SKTexture]()
+    fileprivate let initialSize = CGSize(width: 52, height: 52)
+    fileprivate let textureAtlas: SKTextureAtlas!
+    fileprivate var textureNameBeginsWith = ""
+    fileprivate var animationSpriteArray = [SKTexture]()
     
-    init() {
+    init(textureAtlas: SKTextureAtlas) {
         
-        let greenTexture = textureAtlas.textureNamed("missle_green_01")
-        super.init(texture: greenTexture, color: .clear, size: initialSize)
+        self.textureAtlas = textureAtlas
+        let textureName = textureAtlas.textureNames.sorted()[0]
+        let texture = textureAtlas.textureNamed(textureName)
+        textureNameBeginsWith = String(textureName.dropLast(6))
+        
+        super.init(texture: texture, color: .clear, size: initialSize)
+        self.setScale(0.7)
         self.name = "powerUp"
         self.zPosition = 20
     }
@@ -30,7 +35,7 @@ class PowerUp: SKSpriteNode {
         
         for i in 1...15 {
             let number = String(format: "%02d", arguments: [i])
-            animationSpriteArray.append(SKTexture(imageNamed: "missle_green_\(number)"))
+            animationSpriteArray.append(SKTexture(imageNamed: textureNameBeginsWith + number))
         }
         
         SKTexture.preload(animationSpriteArray) {
