@@ -18,7 +18,7 @@ final class Island: SKSpriteNode, GameBackgroundSpriteable {
         island.setScale(randomScaleFactor)
         island.position = point ?? randomPoint()
         island.zPosition = 1
-        island.name = "backgroundSprite"
+        island.name = "sprite"
         island.run(rotateForRandomAngle())
         island.run(move(from: island.position))
         

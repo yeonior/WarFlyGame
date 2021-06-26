@@ -18,19 +18,8 @@ class GameScene: SKScene {
         spawnIslands()
         spawnClouds()
         player.performFly()
-        
-        let powerUp = PowerUp()
-        powerUp.performRotation()
-        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        self.addChild(powerUp)
-        
-        let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
-        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
-            Enemy.textureAtlas = enemyTextureAtlas
-            let enemy = Enemy()
-            enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height * 2 / 3)
-            self.addChild(enemy)
-        }
+        spawnPowerUp()
+        spawnEnemies()
     }
     
     fileprivate func configureStartScene() {
@@ -84,11 +73,40 @@ class GameScene: SKScene {
         run(spawnCloudForever)
     }
     
+    fileprivate func spawnPowerUp() {
+        
+        let powerUp = PowerUp()
+        powerUp.performRotation()
+        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        self.addChild(powerUp)
+    }
+    
+    fileprivate func spawnEnemies() {
+        
+        let spawnEnemiesWait = SKAction.wait(forDuration: 1)
+        let spawnEnemiesAction = SKAction.run {
+            let enemyTextureAtlas = SKTextureAtlas(named: "Enemy_1")
+            SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas]) {
+                Enemy.textureAtlas = enemyTextureAtlas
+                let enemy = Enemy()
+                enemy.position = CGPoint(x: self.size.width - 50, y: self.size.height + 50)
+                enemy.flySpiral()
+                self.addChild(enemy)
+            }
+        }
+        
+        let spawnEmemiesSequence = SKAction.sequence([spawnEnemiesWait, spawnEnemiesAction])
+        let spawnEnemiesrRepeating = SKAction.repeat(spawnEmemiesSequence, count: 10)
+        
+        run(spawnEnemiesrRepeating)
+    }
+    
     override func didSimulatePhysics() {
         
         player.checkPosition()
         
-        enumerateChildNodes(withName: "backgroundSprite") { node, _ in
+        // deleting sprites
+        enumerateChildNodes(withName: "sprite") { node, _ in
             if node.position.y < -200 {
                 node.removeFromParent()
             }
