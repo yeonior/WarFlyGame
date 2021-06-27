@@ -136,18 +136,34 @@ class GameScene: SKScene {
         run(spawnEnemiesRepeating)
     }
     
+    fileprivate func playerFire() {
+        
+        let shot = YellowShot()
+        shot.position = self.player.position
+        shot.startMovement()
+        addChild(shot)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        playerFire()
+    }
+    
     override func didSimulatePhysics() {
         
         player.checkPosition()
         
         // deleting sprites
         enumerateChildNodes(withName: "sprite") { node, _ in
+            
             if node.position.y <= -200 {
                 node.removeFromParent()
-                
-                if node.isKind(of: PowerUp.self) {
-                    print("PowerUp is gone")
-                }
+            }
+        }
+        
+        enumerateChildNodes(withName: "shotSprite") { node, _ in
+            
+            if node.position.y >= self.size.height + 100 {
+                node.removeFromParent()
             }
         }
     }
