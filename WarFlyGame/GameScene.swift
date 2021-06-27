@@ -75,10 +75,25 @@ class GameScene: SKScene {
     
     fileprivate func spawnPowerUp() {
         
-        let powerUp = GreenPowerUp()
-        powerUp.performRotation()
-        powerUp.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-        self.addChild(powerUp)
+        let spawnAction = SKAction.run {
+            
+            let randomNumber = Int(arc4random_uniform(2))
+            let powerUp = randomNumber == 1 ? BluePowerUp() : GreenPowerUp()
+            
+            let randomPositionX = arc4random_uniform(UInt32(self.size.width - 30))
+            powerUp.position = CGPoint(x: CGFloat(randomPositionX), y: self.size.height + 100)
+            
+            powerUp.startMovement()
+            self.addChild(powerUp)
+        }
+        
+        let randomDuration = Double(arc4random_uniform(15) + 10)
+        let waitAction = SKAction.wait(forDuration: randomDuration)
+        
+        let actionsSequence = SKAction.sequence([waitAction, spawnAction])
+        let actionsSequenceForever = SKAction.repeatForever(actionsSequence)
+        
+        run(actionsSequenceForever)
     }
     
     fileprivate func spawnGroupOfEnemies() {
@@ -127,8 +142,12 @@ class GameScene: SKScene {
         
         // deleting sprites
         enumerateChildNodes(withName: "sprite") { node, _ in
-            if node.position.y < -200 {
+            if node.position.y <= -200 {
                 node.removeFromParent()
+                
+                if node.isKind(of: PowerUp.self) {
+                    print("PowerUp is gone")
+                }
             }
         }
     }
