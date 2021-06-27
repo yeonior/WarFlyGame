@@ -100,8 +100,8 @@ class GameScene: SKScene {
         
         let spawnEnemyWait = SKAction.wait(forDuration: 1)
         let spawnEnemyAction = SKAction.run { [unowned self] in
-            let enemyTextureAtlas1 = SKTextureAtlas(named: "Enemy_1")
-            let enemyTextureAtlas2 = SKTextureAtlas(named: "Enemy_2")
+            let enemyTextureAtlas1 = Assets.shared.enemy_1Atlas
+            let enemyTextureAtlas2 = Assets.shared.enemy_2Atlas
             SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
                 
                 let randomNumber = Int(arc4random_uniform(2))
@@ -138,7 +138,7 @@ class GameScene: SKScene {
     
     fileprivate func playerFire() {
         
-        let shot = YellowShot()
+        let shot = YellowAmmo()
         shot.position = self.player.position
         shot.startMovement()
         addChild(shot)

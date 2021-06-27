@@ -23,8 +23,9 @@
 		A2D52E3026823BD40007AF00 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D52E2F26823BD40007AF00 /* PowerUp.swift */; };
 		A2D86EB22688825F00E1F7CE /* YellowAmmo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */; };
 		A2D86EB5268882E700E1F7CE /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB4268882E700E1F7CE /* Shot.swift */; };
-		A2D86EB72688886400E1F7CE /* YellowShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB62688886400E1F7CE /* YellowShot.swift */; };
+		A2D86EB72688886400E1F7CE /* YellowAmmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB62688886400E1F7CE /* YellowAmmo.swift */; };
 		A2D86EB926888B2700E1F7CE /* SmallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB826888B2700E1F7CE /* SmallSprite.swift */; };
+		A2D86EBF2688A63F00E1F7CE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EBE2688A63F00E1F7CE /* Assets.swift */; };
 		A2F702B5267B6AA50015170A /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F702B4267B6AA50015170A /* Island.swift */; };
 		A2F702B7267BAD000015170A /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F702B6267BAD000015170A /* Cloud.swift */; };
 		A2F96FA82687A3A400236236 /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A2F96FA72687A3A400236236 /* BluePowerUp.atlas */; };
@@ -51,8 +52,9 @@
 		A2D52E2F26823BD40007AF00 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = YellowAmmo.atlas; sourceTree = "<group>"; };
 		A2D86EB4268882E700E1F7CE /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
-		A2D86EB62688886400E1F7CE /* YellowShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowShot.swift; sourceTree = "<group>"; };
+		A2D86EB62688886400E1F7CE /* YellowAmmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowAmmo.swift; sourceTree = "<group>"; };
 		A2D86EB826888B2700E1F7CE /* SmallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSprite.swift; sourceTree = "<group>"; };
+		A2D86EBE2688A63F00E1F7CE /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		A2F702B4267B6AA50015170A /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 		A2F702B6267BAD000015170A /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		A2F96FA72687A3A400236236 /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				A2746618267A721A00613B6C /* AppDelegate.swift */,
 				A274661E267A721A00613B6C /* GameScene.swift */,
+				A2D86EBE2688A63F00E1F7CE /* Assets.swift */,
 				A2D86EBD2688A4C900E1F7CE /* Sprites */,
 				A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */,
 				A2B00D65267B3DFE00E3C657 /* Background.swift */,
@@ -129,7 +132,7 @@
 		A2D86EBB2688A38B00E1F7CE /* Shots */ = {
 			isa = PBXGroup;
 			children = (
-				A2D86EB62688886400E1F7CE /* YellowShot.swift */,
+				A2D86EB62688886400E1F7CE /* YellowAmmo.swift */,
 			);
 			path = Shots;
 			sourceTree = "<group>";
@@ -234,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A274661F267A721A00613B6C /* GameScene.swift in Sources */,
-				A2D86EB72688886400E1F7CE /* YellowShot.swift in Sources */,
+				A2D86EB72688886400E1F7CE /* YellowAmmo.swift in Sources */,
 				A224E9662680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift in Sources */,
 				A224E9622680A64400CB898A /* PlayerPlane.swift in Sources */,
 				A2F702B7267BAD000015170A /* Cloud.swift in Sources */,
@@ -243,6 +246,7 @@
 				A2D86EB926888B2700E1F7CE /* SmallSprite.swift in Sources */,
 				A2746619267A721A00613B6C /* AppDelegate.swift in Sources */,
 				A262D84226873DFC005F44F9 /* Enemy.swift in Sources */,
+				A2D86EBF2688A63F00E1F7CE /* Assets.swift in Sources */,
 				A2F96FAC2687A8AC00236236 /* GreenPowerUp.swift in Sources */,
 				A2F702B5267B6AA50015170A /* Island.swift in Sources */,
 				A2D52E3026823BD40007AF00 /* PowerUp.swift in Sources */,
