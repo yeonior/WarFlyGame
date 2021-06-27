@@ -9,11 +9,13 @@ import SpriteKit
 import GameplayKit
 
 protocol GameBackgroundSpriteable {
+    
     static func populate(at point: CGPoint?) -> Self
     static func randomPoint() -> CGPoint
 }
 
 extension GameBackgroundSpriteable {
+    
     static func randomPoint() -> CGPoint {
         
         let screen = UIScreen.main.bounds
