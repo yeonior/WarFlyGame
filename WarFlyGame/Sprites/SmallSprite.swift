@@ -27,6 +27,8 @@ class SmallSprite: SKSpriteNode {
         
         super.init(texture: texture, color: .clear, size: size)
         self.setScale(0.7)
+        
+        self.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: self.size)
     }
     
     func startMovement() {

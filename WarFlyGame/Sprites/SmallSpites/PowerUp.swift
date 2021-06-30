@@ -16,6 +16,11 @@ class PowerUp: SmallSprite {
         super.init(textureAtlas: textureAtlas, size: initialSize, textureCount: 15, action: action)
         self.name = "sprite"
         self.zPosition = 20
+        
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.categoryBitMask = BitMaskCategory.powerUp
+        self.physicsBody?.collisionBitMask = BitMaskCategory.player
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.player
     }
     
     required init?(coder aDecoder: NSCoder) {
