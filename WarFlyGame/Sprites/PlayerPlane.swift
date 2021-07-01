@@ -30,7 +30,31 @@ class PlayerPlane: SKSpriteNode {
         playerPlane.position = point
         playerPlane.zPosition = 40
         
-        playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
+        let offsetX = playerPlane.frame.size.width * playerPlane.anchorPoint.x
+        let offsetY = playerPlane.frame.size.height * playerPlane.anchorPoint.y
+        
+        let path = CGMutablePath()
+        path.move(to: CGPoint(x: 9 - offsetX, y: 76 - offsetY))
+        path.addLine(to: CGPoint(x: 65 - offsetX, y: 84 - offsetY))
+        path.addLine(to: CGPoint(x: 71 - offsetX, y: 99 - offsetY))
+        path.addLine(to: CGPoint(x: 79 - offsetX, y: 99 - offsetY))
+        path.addLine(to: CGPoint(x: 84 - offsetX, y: 85 - offsetY))
+        path.addLine(to: CGPoint(x: 140 - offsetX, y: 76 - offsetY))
+        path.addLine(to: CGPoint(x: 142 - offsetX, y: 66 - offsetY))
+        path.addLine(to: CGPoint(x: 85 - offsetX, y: 57 - offsetY))
+        path.addLine(to: CGPoint(x: 78 - offsetX, y: 23 - offsetY))
+        path.addLine(to: CGPoint(x: 94 - offsetX, y: 19 - offsetY))
+        path.addLine(to: CGPoint(x: 95 - offsetX, y: 10 - offsetY))
+        path.addLine(to: CGPoint(x: 75 - offsetX, y: 4 - offsetY))
+        path.addLine(to: CGPoint(x: 55 - offsetX, y: 9 - offsetY))
+        path.addLine(to: CGPoint(x: 55 - offsetX, y: 19 - offsetY))
+        path.addLine(to: CGPoint(x: 70 - offsetX, y: 23 - offsetY))
+        path.addLine(to: CGPoint(x: 66 - offsetX, y: 57 - offsetY))
+        path.addLine(to: CGPoint(x: 8 - offsetX, y: 65 - offsetY))
+        path.closeSubpath()
+        
+        playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
+       //        playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
         playerPlane.physicsBody?.isDynamic = false
         playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player
         playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
