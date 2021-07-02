@@ -176,7 +176,19 @@ extension GameScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         
-        let bodyA = contact.bodyA.categoryBitMask
+        let contactCategory: BitMaskCategory = [contact.bodyA.category, contact.bodyB.category]
+        switch contactCategory {
+        case [.player, .enemy]:
+            print("player vs enemy")
+        case [.player, .powerUp]:
+            print("player vs powerup")
+        case [.enemy, .shot]:
+            print("enemy vs shot")
+        default:
+            preconditionFailure("Wrong category!")
+        }
+        
+        /* let bodyA = contact.bodyA.categoryBitMask
         let bodyB = contact.bodyB.categoryBitMask
         let player = BitMaskCategory.player
         let enemy = BitMaskCategory.enemy
@@ -189,7 +201,7 @@ extension GameScene: SKPhysicsContactDelegate {
             print("2")
         } else if bodyA == enemy && bodyB == shot || bodyB == enemy && bodyA == shot {
             print("3")
-        }
+        } */
     }
     
     func didEnd(_ contact: SKPhysicsContact) {

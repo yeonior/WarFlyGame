@@ -56,9 +56,9 @@ class PlayerPlane: SKSpriteNode {
         playerPlane.physicsBody = SKPhysicsBody(polygonFrom: path)
        //        playerPlane.physicsBody = SKPhysicsBody(texture: playerPlaneTexture, alphaThreshold: 0.5, size: playerPlane.size)
         playerPlane.physicsBody?.isDynamic = false
-        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player
-        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
-        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy | BitMaskCategory.powerUp
+        playerPlane.physicsBody?.categoryBitMask = BitMaskCategory.player.rawValue
+        playerPlane.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
+        playerPlane.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue | BitMaskCategory.powerUp.rawValue
         
         return playerPlane
     }

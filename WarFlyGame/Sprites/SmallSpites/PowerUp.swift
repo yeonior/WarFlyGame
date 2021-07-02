@@ -18,9 +18,9 @@ class PowerUp: SmallSprite {
         self.zPosition = 20
         
         self.physicsBody?.isDynamic = true
-        self.physicsBody?.categoryBitMask = BitMaskCategory.powerUp
-        self.physicsBody?.collisionBitMask = BitMaskCategory.player
-        self.physicsBody?.contactTestBitMask = BitMaskCategory.player
+        self.physicsBody?.categoryBitMask = BitMaskCategory.powerUp.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.player.rawValue
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.player.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {

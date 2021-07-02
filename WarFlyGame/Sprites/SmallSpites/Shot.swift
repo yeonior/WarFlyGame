@@ -19,9 +19,9 @@ class Shot: SmallSprite {
         self.zPosition = 30
         
         self.physicsBody?.isDynamic = false
-        self.physicsBody?.categoryBitMask = BitMaskCategory.shot
-        self.physicsBody?.collisionBitMask = BitMaskCategory.enemy
-        self.physicsBody?.contactTestBitMask = BitMaskCategory.enemy
+        self.physicsBody?.categoryBitMask = BitMaskCategory.shot.rawValue
+        self.physicsBody?.collisionBitMask = BitMaskCategory.enemy.rawValue
+        self.physicsBody?.contactTestBitMask = BitMaskCategory.enemy.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
