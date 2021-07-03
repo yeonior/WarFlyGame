@@ -23,6 +23,7 @@
 		A2B00D66267B3DFE00E3C657 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B00D65267B3DFE00E3C657 /* Background.swift */; };
 		A2BA440A268CECC300B03AA9 /* BitMaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */; };
 		A2C7A4392690891000121323 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7A4382690891000121323 /* HUD.swift */; };
+		A2C7A4402690913300121323 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7A43F2690913300121323 /* ButtonNode.swift */; };
 		A2D52E3026823BD40007AF00 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D52E2F26823BD40007AF00 /* PowerUp.swift */; };
 		A2D86EB22688825F00E1F7CE /* YellowAmmo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */; };
 		A2D86EB5268882E700E1F7CE /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB4268882E700E1F7CE /* Shot.swift */; };
@@ -55,6 +56,7 @@
 		A2B00D65267B3DFE00E3C657 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskCategory.swift; sourceTree = "<group>"; };
 		A2C7A4382690891000121323 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		A2C7A43F2690913300121323 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		A2D52E2F26823BD40007AF00 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = YellowAmmo.atlas; sourceTree = "<group>"; };
 		A2D86EB4268882E700E1F7CE /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		A2D86EBD2688A4C900E1F7CE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2C7A43F2690913300121323 /* ButtonNode.swift */,
 				A2C7A4382690891000121323 /* HUD.swift */,
 				A2B00D65267B3DFE00E3C657 /* Background.swift */,
 				A2F702B4267B6AA50015170A /* Island.swift */,
@@ -294,6 +297,7 @@
 				A224E9622680A64400CB898A /* PlayerPlane.swift in Sources */,
 				A2F702B7267BAD000015170A /* Cloud.swift in Sources */,
 				A2F96FAA2687A8A300236236 /* BluePowerUp.swift in Sources */,
+				A2C7A4402690913300121323 /* ButtonNode.swift in Sources */,
 				A2746621267A721A00613B6C /* GameViewController.swift in Sources */,
 				A2D86EB926888B2700E1F7CE /* SmallSprite.swift in Sources */,
 				A2746619267A721A00613B6C /* AppDelegate.swift in Sources */,
