@@ -22,6 +22,7 @@
 		A274D4B8268251C400731046 /* GreenPowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A274D4B7268251C400731046 /* GreenPowerUp.atlas */; };
 		A2B00D66267B3DFE00E3C657 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B00D65267B3DFE00E3C657 /* Background.swift */; };
 		A2BA440A268CECC300B03AA9 /* BitMaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */; };
+		A2C7A4392690891000121323 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7A4382690891000121323 /* HUD.swift */; };
 		A2D52E3026823BD40007AF00 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D52E2F26823BD40007AF00 /* PowerUp.swift */; };
 		A2D86EB22688825F00E1F7CE /* YellowAmmo.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */; };
 		A2D86EB5268882E700E1F7CE /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB4268882E700E1F7CE /* Shot.swift */; };
@@ -53,6 +54,7 @@
 		A274D4B7268251C400731046 /* GreenPowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = GreenPowerUp.atlas; sourceTree = "<group>"; };
 		A2B00D65267B3DFE00E3C657 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskCategory.swift; sourceTree = "<group>"; };
+		A2C7A4382690891000121323 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		A2D52E2F26823BD40007AF00 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		A2D86EB12688825F00E1F7CE /* YellowAmmo.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = YellowAmmo.atlas; sourceTree = "<group>"; };
 		A2D86EB4268882E700E1F7CE /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
@@ -96,21 +98,60 @@
 		A2746617267A721A00613B6C /* WarFlyGame */ = {
 			isa = PBXGroup;
 			children = (
-				A2746618267A721A00613B6C /* AppDelegate.swift */,
-				A2517B12268B9EB900A045B3 /* MenuScene.swift */,
-				A274661E267A721A00613B6C /* GameScene.swift */,
-				A2D86EBE2688A63F00E1F7CE /* Assets.swift */,
-				A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */,
-				A2D86EBD2688A4C900E1F7CE /* Sprites */,
-				A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */,
-				A2B00D65267B3DFE00E3C657 /* Background.swift */,
-				A2746620267A721A00613B6C /* GameViewController.swift */,
-				A2746622267A721A00613B6C /* Main.storyboard */,
-				A2746625267A721C00613B6C /* Assets.xcassets */,
-				A2746627267A721C00613B6C /* Info.plist */,
+				A2C7A43E26908CC600121323 /* Scenes */,
+				A2C7A43D26908C6B00121323 /* Managers */,
+				A2D86EBD2688A4C900E1F7CE /* Classes */,
+				A2C7A43C26908BF500121323 /* Protocols + Extensions */,
+				A2C7A43B26908BDB00121323 /* Controllers */,
+				A2C7A43A26908B8400121323 /* Supporting Files */,
 				A2D86EB3268882B000E1F7CE /* Atlases */,
 			);
 			path = WarFlyGame;
+			sourceTree = "<group>";
+		};
+		A2C7A43A26908B8400121323 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A2746618267A721A00613B6C /* AppDelegate.swift */,
+				A2746622267A721A00613B6C /* Main.storyboard */,
+				A2746625267A721C00613B6C /* Assets.xcassets */,
+				A2746627267A721C00613B6C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A2C7A43B26908BDB00121323 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2746620267A721A00613B6C /* GameViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A2C7A43C26908BF500121323 /* Protocols + Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A224E9652680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift */,
+			);
+			path = "Protocols + Extensions";
+			sourceTree = "<group>";
+		};
+		A2C7A43D26908C6B00121323 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A2D86EBE2688A63F00E1F7CE /* Assets.swift */,
+				A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A2C7A43E26908CC600121323 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A2517B12268B9EB900A045B3 /* MenuScene.swift */,
+				A274661E267A721A00613B6C /* GameScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		A2D86EB3268882B000E1F7CE /* Atlases */ = {
@@ -154,9 +195,11 @@
 			path = SmallSpites;
 			sourceTree = "<group>";
 		};
-		A2D86EBD2688A4C900E1F7CE /* Sprites */ = {
+		A2D86EBD2688A4C900E1F7CE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A2C7A4382690891000121323 /* HUD.swift */,
+				A2B00D65267B3DFE00E3C657 /* Background.swift */,
 				A2F702B4267B6AA50015170A /* Island.swift */,
 				A2F702B6267BAD000015170A /* Cloud.swift */,
 				A224E9612680A64400CB898A /* PlayerPlane.swift */,
@@ -164,7 +207,7 @@
 				A2D86EB826888B2700E1F7CE /* SmallSprite.swift */,
 				A2D86EBC2688A39E00E1F7CE /* SmallSpites */,
 			);
-			path = Sprites;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +288,7 @@
 				A2517B13268B9EB900A045B3 /* MenuScene.swift in Sources */,
 				A2BA440A268CECC300B03AA9 /* BitMaskCategory.swift in Sources */,
 				A274661F267A721A00613B6C /* GameScene.swift in Sources */,
+				A2C7A4392690891000121323 /* HUD.swift in Sources */,
 				A2D86EB72688886400E1F7CE /* YellowAmmo.swift in Sources */,
 				A224E9662680E19300CB898A /* protocol GameBackgroundSpriteable + Extensions.swift in Sources */,
 				A224E9622680A64400CB898A /* PlayerPlane.swift in Sources */,
@@ -400,7 +444,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = WarFlyGame/Info.plist;
+				INFOPLIST_FILE = "WarFlyGame/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,7 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U3JHK4U826;
-				INFOPLIST_FILE = WarFlyGame/Info.plist;
+				INFOPLIST_FILE = "WarFlyGame/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
