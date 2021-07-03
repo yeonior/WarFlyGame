@@ -17,6 +17,7 @@ class Shot: SmallSprite {
         super.init(textureAtlas: textureAtlas, size: initialSize, textureCount: 32, action: action)
         self.name = "shotSprite"
         self.zPosition = 30
+        self.setScale(0.3)
         
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = BitMaskCategory.shot.rawValue

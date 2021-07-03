@@ -26,7 +26,6 @@ class SmallSprite: SKSpriteNode {
         self.textureCount = textureCount
         
         super.init(texture: texture, color: .clear, size: size)
-        self.setScale(0.7)
         
         self.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: self.size)
     }

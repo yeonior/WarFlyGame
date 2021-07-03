@@ -16,6 +16,7 @@ class PowerUp: SmallSprite {
         super.init(textureAtlas: textureAtlas, size: initialSize, textureCount: 15, action: action)
         self.name = "sprite"
         self.zPosition = 20
+        self.setScale(0.7)
         
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = BitMaskCategory.powerUp.rawValue
