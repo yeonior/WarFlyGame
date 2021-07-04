@@ -40,7 +40,7 @@ class MenuScene: SKScene {
             let transition = SKTransition.crossFade(withDuration: 1)
             let gameScene = GameScene(size: self.size)
             gameScene.scaleMode = .aspectFill
-            self.scene?.view?.presentScene(gameScene, transition: transition)
+            self.scene!.view?.presentScene(gameScene, transition: transition)
         }
     }
 }
