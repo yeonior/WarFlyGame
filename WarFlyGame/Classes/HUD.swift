@@ -9,6 +9,7 @@ import SpriteKit
 
 class HUD: SKNode {
     
+    let int = 1
     let scoreBackground = SKSpriteNode(imageNamed: "scores")
     let scoreLabel = SKLabelNode(text: "10000")
     let menuButton = SKSpriteNode(imageNamed: "menu")

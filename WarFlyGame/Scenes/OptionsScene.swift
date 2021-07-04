@@ -26,6 +26,7 @@ class OptionsScene: ParentScene {
         addChild(sound)
         
         let back = ButtonNode(titled: "back", backgroundName: "button_background")
+        back.setScale(0.8)
         back.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 100)
         back.name = "back"
         back.label.name = "back"
@@ -47,10 +48,5 @@ class OptionsScene: ParentScene {
             backScene.scaleMode = .aspectFill
             self.scene!.view?.presentScene(backScene, transition: transition)
         }
-        //            sceneManager.gameScene = nil
-        //            let transition = SKTransition.crossFade(withDuration: 1)
-        //            let gameScene = GameScene(size: self.size)
-        //            gameScene.scaleMode = .aspectFill
-        //            self.scene!.view?.presentScene(gameScene, transition: transition)
     }
 }

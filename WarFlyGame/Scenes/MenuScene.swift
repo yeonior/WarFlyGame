@@ -16,14 +16,13 @@ class MenuScene: ParentScene {
             Assets.shared.isLoaded = true
         }
         
-        self.backgroundColor = SKColor(red: 0.15, green: 0.15, blue: 0.3, alpha: 1)
-
         setHeader(withName: nil, andBackground: "header1")
         
         let titles = ["play", "options", "best"]
         for (index, title) in titles.enumerated(){
             let button = ButtonNode(titled: title, backgroundName: "button_background")
-            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 90))
+            button.setScale(0.8)
+            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 70))
             button.name = title
             button.label.name = title
             addChild(button)
@@ -50,11 +49,11 @@ class MenuScene: ParentScene {
             
         } else if node.name == "best" {
             
-//            let transition = SKTransition.crossFade(withDuration: 1)
-//            let bestScene = OptionsScene(size: self.size)
-//            bestScene.backScene = self
-//            bestScene.scaleMode = .aspectFill
-//            self.scene!.view?.presentScene(bestScene, transition: transition)            
+            let transition = SKTransition.crossFade(withDuration: 1)
+            let bestScene = BestScene(size: self.size)
+            bestScene.backScene = self
+            bestScene.scaleMode = .aspectFill
+            self.scene!.view?.presentScene(bestScene, transition: transition)
         }
     }
 }
