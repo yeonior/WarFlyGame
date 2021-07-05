@@ -25,7 +25,6 @@
 		A2B657C82691DCA900E81051 /* OptionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B657C72691DCA900E81051 /* OptionsScene.swift */; };
 		A2B657CA2691FD5800E81051 /* BestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B657C92691FD5800E81051 /* BestScene.swift */; };
 		A2B657CD2692240500E81051 /* EnemyExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = A2B657CB2692240500E81051 /* EnemyExplosion.sks */; };
-		A2B657CE2692240500E81051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2B657CC2692240500E81051 /* Assets.xcassets */; };
 		A2BA440A268CECC300B03AA9 /* BitMaskCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */; };
 		A2C7A4392690891000121323 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7A4382690891000121323 /* HUD.swift */; };
 		A2C7A4402690913300121323 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C7A43F2690913300121323 /* ButtonNode.swift */; };
@@ -65,7 +64,6 @@
 		A2B657C72691DCA900E81051 /* OptionsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsScene.swift; sourceTree = "<group>"; };
 		A2B657C92691FD5800E81051 /* BestScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestScene.swift; sourceTree = "<group>"; };
 		A2B657CB2692240500E81051 /* EnemyExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyExplosion.sks; sourceTree = "<group>"; };
-		A2B657CC2692240500E81051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2BA4409268CECC300B03AA9 /* BitMaskCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskCategory.swift; sourceTree = "<group>"; };
 		A2C7A4382690891000121323 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		A2C7A43F2690913300121323 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 				A2B657C52691D97D00E81051 /* ParentScene.swift */,
 				A2517B12268B9EB900A045B3 /* MenuScene.swift */,
 				A274661E267A721A00613B6C /* GameScene.swift */,
-				A2B657CC2692240500E81051 /* Assets.xcassets */,
 				A2B657C72691DCA900E81051 /* OptionsScene.swift */,
 				A2B657C92691FD5800E81051 /* BestScene.swift */,
 				A2CD16F42690CF2C0040EA86 /* PauseScene.swift */,
@@ -303,7 +300,6 @@
 				A2B657CD2692240500E81051 /* EnemyExplosion.sks in Resources */,
 				A2D86EB22688825F00E1F7CE /* YellowAmmo.atlas in Resources */,
 				A2F96FA82687A3A400236236 /* BluePowerUp.atlas in Resources */,
-				A2B657CE2692240500E81051 /* Assets.xcassets in Resources */,
 				A224E9642680A7BB00CB898A /* PlayerPlane.atlas in Resources */,
 				A2746624267A721A00613B6C /* Main.storyboard in Resources */,
 				A262D84826876F9D005F44F9 /* Enemy_2.atlas in Resources */,
