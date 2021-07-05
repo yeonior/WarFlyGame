@@ -150,7 +150,7 @@ class GameScene: ParentScene {
                 let enemy = Enemy(enemyTexture: enemyTexture)
                 enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 50)
                 enemy.flySpiral()
-                self.addChild(enemy)
+                addChild(enemy)
             }
         }
         
@@ -273,49 +273,38 @@ extension GameScene: SKPhysicsContactDelegate {
             
         case [.player, .powerUp]:
             
-            if contact.bodyA.node?.name == "bluePowerUp" {
-                if contact.bodyA.node != nil {
+            if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
+                
+                if contact.bodyA.node?.name == "bluePowerUp" {
                     contact.bodyA.node?.removeFromParent()
-                    print("blue")
-                }
-            } else if contact.bodyB.node?.name == "bluePowerUp" {
-                if contact.bodyB.node != nil {
+                    lives = 3
+                    player.bluePowerUp()
+                } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
-                    print("blue")
+                    lives = 3
+                    player.bluePowerUp()
                 }
-            }
-            
-            if contact.bodyA.node?.name == "greenPowerUp" {
-                if contact.bodyA.node != nil {
+                
+                if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
-                    print("green")
-                }
-            } else if contact.bodyB.node?.name == "greenPowerUp" {
-                if contact.bodyB.node != nil {
+                    player.greenPowerUp()
+                } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
-                    print("green")
+                    player.greenPowerUp()
                 }
             }
             
         case [.enemy, .shot]:
             
-            if contact.bodyA.node?.name == "shotSprite" {
-                if contact.bodyA.node != nil {
-                    contact.bodyA.node?.removeFromParent()
-                    contact.bodyB.node?.removeFromParent()
-                    hud.score += 5
+            if contact.bodyA.node?.parent != nil {
+                
+                contact.bodyA.node?.removeFromParent()
+                contact.bodyB.node?.removeFromParent()
+                hud.score += 5
+                addChild(explosion!)
+                self.run(waitForExplosionAction) {
+                    explosion?.removeFromParent()
                 }
-            } else {
-                if contact.bodyB.node != nil {
-                    contact.bodyA.node?.removeFromParent()
-                    contact.bodyB.node?.removeFromParent()
-                    hud.score += 5
-                }
-            }
-            
-            addChild(explosion!)
-            self.run(waitForExplosionAction) {
-                explosion?.removeFromParent()
             }
             
         default:
