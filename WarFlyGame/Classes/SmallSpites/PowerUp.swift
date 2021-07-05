@@ -14,7 +14,6 @@ class PowerUp: SmallSprite {
         let initialSize = CGSize(width: 52, height: 52)
         let action = SKAction.moveTo(y: -300, duration: 5)
         super.init(textureAtlas: textureAtlas, size: initialSize, textureCount: 15, action: action)
-        self.name = "sprite"
         self.zPosition = 20
         self.setScale(0.7)
         
