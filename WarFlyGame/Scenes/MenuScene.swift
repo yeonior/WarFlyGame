@@ -14,18 +14,18 @@ class MenuScene: ParentScene {
         if !Assets.shared.isLoaded {
             Assets.shared.preloadAssets()
             Assets.shared.isLoaded = true
-        }
-        
-        setHeader(withName: nil, andBackground: "header1")
-        
-        let titles = ["play", "options", "best"]
-        for (index, title) in titles.enumerated(){
-            let button = ButtonNode(titled: title, backgroundName: "button_background")
-            button.setScale(0.8)
-            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 70))
-            button.name = title
-            button.label.name = title
-            addChild(button)
+            
+            setHeader(withName: nil, andBackground: "header1")
+            
+            let titles = ["play", "options", "best"]
+            for (index, title) in titles.enumerated(){
+                let button = ButtonNode(titled: title, backgroundName: "button_background")
+                button.setScale(0.8)
+                button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 70))
+                button.name = title
+                button.label.name = title
+                addChild(button)
+            }
         }
     }
     

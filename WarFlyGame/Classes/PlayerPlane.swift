@@ -130,12 +130,12 @@ class PlayerPlane: SKSpriteNode {
     fileprivate func movementDirectionCheck() {
         
         if xAcceleration > 0.02, moveDirection != .right, stillTurning == false {
+            stillTurning = true
             moveDirection = .right
-            stillTurning = true
             turnPlane(direction: .right)
-        } else if xAcceleration < 0.02, moveDirection != .left, stillTurning == false {
-            moveDirection = .left
+        } else if xAcceleration < -0.02, moveDirection != .left, stillTurning == false {
             stillTurning = true
+            moveDirection = .left
             turnPlane(direction: .left)
         } else if stillTurning == false {
             turnPlane(direction: .none)
