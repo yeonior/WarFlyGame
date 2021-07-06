@@ -8,7 +8,9 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: ParentScene {  
+class GameScene: ParentScene {
+    
+    var backgroundMusic: SKAudioNode!
     
     fileprivate var player: PlayerPlane!
     fileprivate let hud = HUD()
@@ -28,6 +30,10 @@ class GameScene: ParentScene {
                 hud.life1.isHidden = false
                 hud.life2.isHidden = true
                 hud.life3.isHidden = true
+            case 0:
+                hud.life1.isHidden = true
+                hud.life2.isHidden = true
+                hud.life3.isHidden = true
             default:
                 break
             }
@@ -35,6 +41,11 @@ class GameScene: ParentScene {
     }
     
     override func didMove(to view: SKView) {
+        
+        if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+            backgroundMusic = SKAudioNode(url: musicURL)
+            addChild(backgroundMusic)
+        }
         
         self.scene?.isPaused = false
         
@@ -251,17 +262,26 @@ extension GameScene: SKPhysicsContactDelegate {
                 if contact.bodyA.node != nil {
                     contact.bodyA.node?.removeFromParent()
                     lives -= 1
+                    
+                    player.colisionToEnemy()
+                    addChild(explosion!)
+                    self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    self.run(waitForExplosionAction) {
+                        explosion?.removeFromParent()
+                    }
                 }
             } else {
                 if contact.bodyB.node != nil {
                     contact.bodyB.node?.removeFromParent()
                     lives -= 1
+                    
+                    player.colisionToEnemy()
+                    addChild(explosion!)
+                    self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    self.run(waitForExplosionAction) {
+                        explosion?.removeFromParent()
+                    }
                 }
-            }
-            
-            addChild(explosion!)
-            self.run(waitForExplosionAction) {
-                explosion?.removeFromParent()
             }
             
             if lives == 0 {
@@ -279,29 +299,34 @@ extension GameScene: SKPhysicsContactDelegate {
                     contact.bodyA.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
+                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                 } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
+                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                 }
                 
                 if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
                     player.greenPowerUp()
+                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                 } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
                     player.greenPowerUp()
+                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                 }
             }
             
         case [.enemy, .shot]:
             
-            if contact.bodyA.node?.parent != nil {
+            if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
                 
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
                 hud.score += 5
                 addChild(explosion!)
+                self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
                 self.run(waitForExplosionAction) {
                     explosion?.removeFromParent()
                 }

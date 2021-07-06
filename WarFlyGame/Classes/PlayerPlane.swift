@@ -164,18 +164,26 @@ class PlayerPlane: SKSpriteNode {
         }
     }
     
+    func colisionToEnemy() {
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.2)
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.2)
+        let sequenceAction = SKAction.sequence([fadeOutAction, fadeInAction])
+        let repeatAction = SKAction.repeat(sequenceAction, count: 5)
+        self.run(repeatAction)
+    }
+    
     // powerup's activate animations
-    func greenPowerUp() {
-        let colorAction = SKAction.colorize(with: .green, colorBlendFactor: 1.0, duration: 0.2)
-        let uncolorAction = SKAction.colorize(with: .green, colorBlendFactor: 0.0, duration: 0.2)
+    func bluePowerUp() {
+        let colorAction = SKAction.colorize(with: .blue, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .blue, colorBlendFactor: 0.0, duration: 0.2)
         let sequenceAction = SKAction.sequence([colorAction, uncolorAction])
         let repeatAction = SKAction.repeat(sequenceAction, count: 5)
         self.run(repeatAction)
     }
     
-    func bluePowerUp() {
-        let colorAction = SKAction.colorize(with: .blue, colorBlendFactor: 1.0, duration: 0.2)
-        let uncolorAction = SKAction.colorize(with: .blue, colorBlendFactor: 0.0, duration: 0.2)
+    func greenPowerUp() {
+        let colorAction = SKAction.colorize(with: .green, colorBlendFactor: 1.0, duration: 0.2)
+        let uncolorAction = SKAction.colorize(with: .green, colorBlendFactor: 0.0, duration: 0.2)
         let sequenceAction = SKAction.sequence([colorAction, uncolorAction])
         let repeatAction = SKAction.repeat(sequenceAction, count: 5)
         self.run(repeatAction)

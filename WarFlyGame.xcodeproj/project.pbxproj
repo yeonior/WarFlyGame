@@ -37,6 +37,11 @@
 		A2D86EB72688886400E1F7CE /* YellowAmmo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB62688886400E1F7CE /* YellowAmmo.swift */; };
 		A2D86EB926888B2700E1F7CE /* SmallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EB826888B2700E1F7CE /* SmallSprite.swift */; };
 		A2D86EBF2688A63F00E1F7CE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2D86EBE2688A63F00E1F7CE /* Assets.swift */; };
+		A2EBA18926945BD6004788D6 /* backgroundMusic.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA18726945BD6004788D6 /* backgroundMusic.m4a */; };
+		A2EBA18A26945BD6004788D6 /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA18826945BD6004788D6 /* hitSound.wav */; };
+		A2EBA18D269461D7004788D6 /* gameoverMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA18B269461D7004788D6 /* gameoverMusic.mp3 */; };
+		A2EBA18E269461D7004788D6 /* powerupSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA18C269461D7004788D6 /* powerupSound.wav */; };
+		A2EBA1922694652F004788D6 /* boomSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA1912694652F004788D6 /* boomSound.wav */; };
 		A2F702B5267B6AA50015170A /* Island.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F702B4267B6AA50015170A /* Island.swift */; };
 		A2F702B7267BAD000015170A /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F702B6267BAD000015170A /* Cloud.swift */; };
 		A2F96FA82687A3A400236236 /* BluePowerUp.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A2F96FA72687A3A400236236 /* BluePowerUp.atlas */; };
@@ -77,6 +82,11 @@
 		A2D86EB62688886400E1F7CE /* YellowAmmo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowAmmo.swift; sourceTree = "<group>"; };
 		A2D86EB826888B2700E1F7CE /* SmallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSprite.swift; sourceTree = "<group>"; };
 		A2D86EBE2688A63F00E1F7CE /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		A2EBA18726945BD6004788D6 /* backgroundMusic.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundMusic.m4a; sourceTree = "<group>"; };
+		A2EBA18826945BD6004788D6 /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
+		A2EBA18B269461D7004788D6 /* gameoverMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameoverMusic.mp3; sourceTree = "<group>"; };
+		A2EBA18C269461D7004788D6 /* powerupSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = powerupSound.wav; sourceTree = "<group>"; };
+		A2EBA1912694652F004788D6 /* boomSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boomSound.wav; sourceTree = "<group>"; };
 		A2F702B4267B6AA50015170A /* Island.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Island.swift; sourceTree = "<group>"; };
 		A2F702B6267BAD000015170A /* Cloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		A2F96FA72687A3A400236236 /* BluePowerUp.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = BluePowerUp.atlas; sourceTree = "<group>"; };
@@ -137,6 +147,11 @@
 		A2C7A43A26908B8400121323 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A2EBA18726945BD6004788D6 /* backgroundMusic.m4a */,
+				A2EBA18B269461D7004788D6 /* gameoverMusic.mp3 */,
+				A2EBA18826945BD6004788D6 /* hitSound.wav */,
+				A2EBA1912694652F004788D6 /* boomSound.wav */,
+				A2EBA18C269461D7004788D6 /* powerupSound.wav */,
 				A2746618267A721A00613B6C /* AppDelegate.swift */,
 				A2746622267A721A00613B6C /* Main.storyboard */,
 				A2746625267A721C00613B6C /* Assets.xcassets */,
@@ -301,12 +316,17 @@
 			files = (
 				A274D4B8268251C400731046 /* GreenPowerUp.atlas in Resources */,
 				A2B657CD2692240500E81051 /* EnemyExplosion.sks in Resources */,
+				A2EBA18926945BD6004788D6 /* backgroundMusic.m4a in Resources */,
 				A2D86EB22688825F00E1F7CE /* YellowAmmo.atlas in Resources */,
 				A2F96FA82687A3A400236236 /* BluePowerUp.atlas in Resources */,
 				A224E9642680A7BB00CB898A /* PlayerPlane.atlas in Resources */,
 				A2746624267A721A00613B6C /* Main.storyboard in Resources */,
+				A2EBA1922694652F004788D6 /* boomSound.wav in Resources */,
 				A262D84826876F9D005F44F9 /* Enemy_2.atlas in Resources */,
+				A2EBA18E269461D7004788D6 /* powerupSound.wav in Resources */,
 				A2746626267A721C00613B6C /* Assets.xcassets in Resources */,
+				A2EBA18A26945BD6004788D6 /* hitSound.wav in Resources */,
+				A2EBA18D269461D7004788D6 /* gameoverMusic.mp3 in Resources */,
 				A262D84426873EE7005F44F9 /* Enemy_1.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

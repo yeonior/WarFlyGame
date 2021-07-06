@@ -9,6 +9,9 @@ import SpriteKit
 
 class GameOverScene: ParentScene {
     
+    var gameoverMusicStatus = false
+    let gameoverMusicAction = SKAction.playSoundFileNamed("gameoverMusic", waitForCompletion: false)
+    
     override func didMove(to view: SKView) {
 
         setHeader(withName: "game over", andBackground: "header_background")
@@ -21,6 +24,11 @@ class GameOverScene: ParentScene {
             button.name = title
             button.label.name = title
             addChild(button)
+        }
+        
+        if !gameoverMusicStatus {
+            run(gameoverMusicAction)
+            gameoverMusicStatus = true
         }
     }
     
