@@ -10,6 +10,7 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
+    let gameSettings = GameSettings()
     var backgroundMusic: SKAudioNode!
     
     fileprivate var player: PlayerPlane!
@@ -42,9 +43,18 @@ class GameScene: ParentScene {
     
     override func didMove(to view: SKView) {
         
-        if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
-            backgroundMusic = SKAudioNode(url: musicURL)
-            addChild(backgroundMusic)
+        gameSettings.loadGameSettings()
+        
+        if gameSettings.isMusic {
+            if backgroundMusic == nil {
+                if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+                    backgroundMusic = SKAudioNode(url: musicURL)
+                    addChild(backgroundMusic)
+                }
+            }
+        } else if backgroundMusic != nil {
+            backgroundMusic.removeFromParent()
+            backgroundMusic = nil
         }
         
         self.scene?.isPaused = false
@@ -265,7 +275,9 @@ extension GameScene: SKPhysicsContactDelegate {
                     
                     player.colisionToEnemy()
                     addChild(explosion!)
-                    self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    }
                     self.run(waitForExplosionAction) {
                         explosion?.removeFromParent()
                     }
@@ -277,7 +289,9 @@ extension GameScene: SKPhysicsContactDelegate {
                     
                     player.colisionToEnemy()
                     addChild(explosion!)
-                    self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("boomSound", waitForCompletion: false))
+                    }
                     self.run(waitForExplosionAction) {
                         explosion?.removeFromParent()
                     }
@@ -299,22 +313,30 @@ extension GameScene: SKPhysicsContactDelegate {
                     contact.bodyA.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
-                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    }
                 } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
                     lives = 3
                     player.bluePowerUp()
-                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    }
                 }
                 
                 if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
                     player.greenPowerUp()
-                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    }
                 } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
                     player.greenPowerUp()
-                    self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    if gameSettings.isSound {
+                        self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
+                    }
                 }
             }
             
@@ -326,7 +348,9 @@ extension GameScene: SKPhysicsContactDelegate {
                 contact.bodyB.node?.removeFromParent()
                 hud.score += 5
                 addChild(explosion!)
-                self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
+                if gameSettings.isSound {
+                    self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
+                }
                 self.run(waitForExplosionAction) {
                     explosion?.removeFromParent()
                 }

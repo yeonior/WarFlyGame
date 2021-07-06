@@ -9,6 +9,7 @@ import SpriteKit
 
 class GameOverScene: ParentScene {
     
+    let gameSettings = GameSettings()
     var gameoverMusicStatus = false
     let gameoverMusicAction = SKAction.playSoundFileNamed("gameoverMusic", waitForCompletion: false)
     
@@ -27,8 +28,10 @@ class GameOverScene: ParentScene {
         }
         
         if !gameoverMusicStatus {
-            run(gameoverMusicAction)
-            gameoverMusicStatus = true
+            if gameSettings.isMusic {
+                run(gameoverMusicAction)
+                gameoverMusicStatus = true
+            }
         }
     }
     
