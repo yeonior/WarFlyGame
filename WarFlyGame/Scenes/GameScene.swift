@@ -10,7 +10,6 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
-    let gameSettings = GameSettings()
     var backgroundMusic: SKAudioNode!
     
     fileprivate var player: PlayerPlane!
@@ -299,6 +298,10 @@ extension GameScene: SKPhysicsContactDelegate {
             }
             
             if lives == 0 {
+                
+                gameSettings.currentScore = hud.score
+                gameSettings.saveScores()
+                
                 let transition = SKTransition.doorsCloseVertical(withDuration: 1)
                 let gameOverScene = GameOverScene(size: self.size)
                 gameOverScene.scaleMode = .aspectFill

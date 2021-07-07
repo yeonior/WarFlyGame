@@ -9,7 +9,6 @@ import SpriteKit
 
 class GameOverScene: ParentScene {
     
-    let gameSettings = GameSettings()
     var gameoverMusicStatus = false
     let gameoverMusicAction = SKAction.playSoundFileNamed("gameoverMusic", waitForCompletion: false)
     

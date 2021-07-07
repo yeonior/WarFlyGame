@@ -9,16 +9,11 @@ import SpriteKit
 
 class BestScene: ParentScene {
     
-//    let scoreLabel = SKLabelNode(text: "10000")
-    var places = [10, 100, 10000]
+    var places: [Int]!
         
     override func didMove(to view: SKView) {
         
         setHeader(withName: "best", andBackground: "header_background")
-        
-//        scoreLabel.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-//        scoreLabel.fontName = "AmericanTypewriter-Bold"
-//        addChild(scoreLabel)
         
         let back = ButtonNode(titled: "back", backgroundName: "button_background")
         back.setScale(0.8)
@@ -36,9 +31,12 @@ class BestScene: ParentScene {
             l.position = CGPoint(x: self.frame.midX - 60, y: self.frame.midY - CGFloat(index * 60) + 50)
             addChild(l)
         }
-        
-        let topPlaces = places.sorted { $0 > $1 }.prefix(3)
-        for (index, value) in topPlaces.enumerated() {
+                
+        gameSettings.loadScores()
+        places = gameSettings.highscore
+        print(places.description)
+
+        for (index, value) in places.enumerated() {
             
             let l = SKLabelNode(text: value.description)
             l.fontColor = UIColor(red: 219 / 255, green: 226 / 255, blue: 215 / 255, alpha: 1.0)

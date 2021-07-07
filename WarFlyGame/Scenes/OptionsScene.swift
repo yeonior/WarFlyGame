@@ -9,7 +9,6 @@ import SpriteKit
 
 class OptionsScene: ParentScene {
     
-    let gameSettings = GameSettings()
     var isMusic: Bool!
     var isSound: Bool!
     
