@@ -207,14 +207,21 @@ class GameScene: ParentScene {
         let node = self.atPoint(location!)
         
         if node.name == "pause" {
+            
             let transition = SKTransition.doorway(withDuration: 1.0)
             let pauseScene = PauseScene(size: self.size)
             pauseScene.scaleMode = .aspectFill
             sceneManager.gameScene = self
             self.scene?.isPaused = true
             self.scene!.view?.presentScene(pauseScene, transition: transition)
+            
         } else {
-            playerFire()
+            
+            if hud.shots > 0 {
+                
+                playerFire()
+                hud.shots -= 1
+            }
         }
     }
     
@@ -239,14 +246,14 @@ class GameScene: ParentScene {
         
         enumerateChildNodes(withName: "bluePowerUp") { node, _ in
             
-            if node.position.y <= -200 {
+            if node.position.y <= -100 {
                 node.removeFromParent()
             }
         }
         
         enumerateChildNodes(withName: "greenPowerUp") { node, _ in
             
-            if node.position.y <= -200 {
+            if node.position.y <= -100 {
                 node.removeFromParent()
             }
         }
@@ -314,14 +321,14 @@ extension GameScene: SKPhysicsContactDelegate {
                 
                 if contact.bodyA.node?.name == "bluePowerUp" {
                     contact.bodyA.node?.removeFromParent()
-                    lives = 3
+                    lives += 1
                     player.bluePowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                     }
                 } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
-                    lives = 3
+                    lives += 1
                     player.bluePowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
@@ -330,12 +337,14 @@ extension GameScene: SKPhysicsContactDelegate {
                 
                 if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
+                    hud.shots += 5
                     player.greenPowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                     }
                 } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
+                    hud.shots += 5
                     player.greenPowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))

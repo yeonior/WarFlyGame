@@ -12,7 +12,7 @@ class SmallSprite: SKSpriteNode {
     fileprivate let textureAtlas: SKTextureAtlas!
     fileprivate var textureNameBeginsWith = ""
     fileprivate var animationSpriteArray = [SKTexture]()
-    fileprivate let textureCount: Int
+    fileprivate let textureCount: Int!
     fileprivate let action: SKAction
     
     init(textureAtlas: SKTextureAtlas, size: CGSize, textureCount: Int, action: SKAction) {

@@ -9,14 +9,20 @@ import SpriteKit
 
 class HUD: SKNode {
     
-    let int = 1
+//    let int = 1
     let scoreBackground = SKSpriteNode(imageNamed: "scores")
     var score = 0 {
         didSet {
             scoreLabel.text = score.description
         }
     }
+    var shots = 10 {
+        didSet {
+            shotsLabel.text = "Shots: " + shots.description
+        }
+    }
     let scoreLabel = SKLabelNode(text: "0")
+    let shotsLabel = SKLabelNode(text: "Shots: 10")
     let menuButton = SKSpriteNode(imageNamed: "menu")
     let life1 = SKSpriteNode(imageNamed: "life")
     let life2 = SKSpriteNode(imageNamed: "life")
@@ -37,6 +43,14 @@ class HUD: SKNode {
         scoreLabel.fontName = "AmericanTypewriter-Bold"
         scoreLabel.fontSize = 30
         scoreBackground.addChild(scoreLabel)
+        
+        shotsLabel.horizontalAlignmentMode = .left
+        shotsLabel.verticalAlignmentMode = .top
+        shotsLabel.position = CGPoint(x: 15, y: screenSize.height - 70)
+        shotsLabel.zPosition = 100
+        shotsLabel.fontName = "AmericanTypewriter-Bold"
+        shotsLabel.fontSize = 24
+        addChild(shotsLabel)
         
         menuButton.setScale(0.8)
         menuButton.anchorPoint = CGPoint(x: 1.0, y: 1.0)
