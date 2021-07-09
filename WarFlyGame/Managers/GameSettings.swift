@@ -31,6 +31,9 @@ class GameSettings: NSObject {
     func saveScores() {
         highscore.append(currentScore)
         highscore = Array(highscore.sorted { $0 > $1 }.prefix(3))
+
+        // highscore reset
+//        highscore = [0, 0, 0]
         
         ud.set(highscore, forKey: highscoreKey)
         ud.synchronize()

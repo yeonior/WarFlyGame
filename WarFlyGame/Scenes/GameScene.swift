@@ -34,6 +34,14 @@ class GameScene: ParentScene {
                 hud.life1.isHidden = true
                 hud.life2.isHidden = true
                 hud.life3.isHidden = true
+                
+                gameSettings.currentScore = hud.score
+                gameSettings.saveScores()
+                
+                let transition = SKTransition.doorsCloseVertical(withDuration: 1)
+                let gameOverScene = GameOverScene(size: self.size)
+                gameOverScene.scaleMode = .aspectFill
+                self.scene!.view?.presentScene(gameOverScene, transition: transition)
             default:
                 break
             }
@@ -302,17 +310,6 @@ extension GameScene: SKPhysicsContactDelegate {
                         explosion?.removeFromParent()
                     }
                 }
-            }
-            
-            if lives == 0 {
-                
-                gameSettings.currentScore = hud.score
-                gameSettings.saveScores()
-                
-                let transition = SKTransition.doorsCloseVertical(withDuration: 1)
-                let gameOverScene = GameOverScene(size: self.size)
-                gameOverScene.scaleMode = .aspectFill
-                self.view?.presentScene(gameOverScene, transition: transition)
             }
             
         case [.player, .powerUp]:

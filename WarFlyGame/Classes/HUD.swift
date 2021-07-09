@@ -9,32 +9,30 @@ import SpriteKit
 
 class HUD: SKNode {
     
-//    let int = 1
-    let scoreBackground = SKSpriteNode(imageNamed: "scores")
-    var score = 0 {
-        didSet {
-            scoreLabel.text = score.description
-        }
-    }
-    var shots = 10 {
-        didSet {
-            shotsLabel.text = "Shots: " + shots.description
-        }
-    }
+    let scoreIcon = SKSpriteNode(imageNamed: "scores")
     let scoreLabel = SKLabelNode(text: "0")
-    let shotsLabel = SKLabelNode(text: "Shots: 10")
+    let shotsIcon = SKSpriteNode(imageNamed: "shots")
+    let shotsLabel = SKLabelNode(text: "10")
     let menuButton = SKSpriteNode(imageNamed: "menu")
     let life1 = SKSpriteNode(imageNamed: "life")
     let life2 = SKSpriteNode(imageNamed: "life")
     let life3 = SKSpriteNode(imageNamed: "life")
     
+    var score = 0 {
+        didSet { scoreLabel.text = score.description }
+    }
+    
+    var shots = 10 {
+        didSet { shotsLabel.text = shots.description }
+    }
+    
     func configureUI(screenSize: CGSize) {
         
-        scoreBackground.setScale(0.6)
-        scoreBackground.anchorPoint = CGPoint(x: 0.0, y: 1.0)
-        scoreBackground.position = CGPoint(x: 10, y: screenSize.height - 10)
-        scoreBackground.zPosition = 99
-        addChild(scoreBackground)
+        scoreIcon.setScale(0.6)
+        scoreIcon.anchorPoint = CGPoint(x: 0.0, y: 1.0)
+        scoreIcon.position = CGPoint(x: 10, y: screenSize.height - 10)
+        scoreIcon.zPosition = 99
+        addChild(scoreIcon)
         
         scoreLabel.horizontalAlignmentMode = .right
         scoreLabel.verticalAlignmentMode = .center
@@ -42,11 +40,17 @@ class HUD: SKNode {
         scoreLabel.zPosition = 100
         scoreLabel.fontName = "AmericanTypewriter-Bold"
         scoreLabel.fontSize = 30
-        scoreBackground.addChild(scoreLabel)
+        scoreIcon.addChild(scoreLabel)
+        
+        shotsIcon.setScale(0.7)
+        shotsIcon.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        shotsIcon.position = CGPoint(x: 10, y: 20)
+        shotsIcon.zPosition = 99
+        addChild(shotsIcon)
         
         shotsLabel.horizontalAlignmentMode = .left
-        shotsLabel.verticalAlignmentMode = .top
-        shotsLabel.position = CGPoint(x: 15, y: screenSize.height - 70)
+        shotsLabel.verticalAlignmentMode = .center
+        shotsLabel.position = CGPoint(x: 47, y: 35)
         shotsLabel.zPosition = 100
         shotsLabel.fontName = "AmericanTypewriter-Bold"
         shotsLabel.fontSize = 24
