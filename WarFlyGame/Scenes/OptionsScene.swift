@@ -17,7 +17,7 @@ class OptionsScene: ParentScene {
         isMusic = gameSettings.isMusic
         isSound = gameSettings.isSound
         
-        setHeader(withName: "options", andBackground: "header_background")
+        setHeader(withTitle: "options", andBackground: "header_background")
         
         let backgroundNameForMusic = isMusic ? "music" : "nomusic"
         let music = ButtonNode(titled: nil, backgroundName: backgroundNameForMusic)

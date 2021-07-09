@@ -11,7 +11,7 @@ class PauseScene: ParentScene {
 
     override func didMove(to view: SKView) {
 
-        setHeader(withName: "pause", andBackground: "header_background")
+        setHeader(withTitle: "pause", andBackground: "header_background")
         
         let titles = ["resume", "restart", "options", "menu"]
         for (index, title) in titles.enumerated(){

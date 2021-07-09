@@ -14,7 +14,7 @@ class GameOverScene: ParentScene {
     
     override func didMove(to view: SKView) {
 
-        setHeader(withName: "game over", andBackground: "header_background")
+        setHeader(withTitle: "game over", andBackground: "header_background")
         
         let titles = ["restart", "options", "menu"]
         for (index, title) in titles.enumerated(){

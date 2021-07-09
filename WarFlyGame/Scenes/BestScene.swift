@@ -17,7 +17,7 @@ class BestScene: ParentScene {
         places = gameSettings.highscore
         
         // header
-        setHeader(withName: "best", andBackground: "header_background")
+        setHeader(withTitle: "best", andBackground: "header_background")
         
         // back button
         let back = ButtonNode(titled: "back", backgroundName: "button_background")

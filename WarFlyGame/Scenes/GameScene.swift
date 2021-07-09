@@ -10,79 +10,53 @@ import GameplayKit
 
 class GameScene: ParentScene {
     
-    var backgroundMusic: SKAudioNode!
-    
     fileprivate var player: PlayerPlane!
     fileprivate let hud = HUD()
     fileprivate let screenSize = UIScreen.main.bounds.size
+    fileprivate var backgroundMusic: SKAudioNode!
     fileprivate var lives = 3 {
         didSet {
-            switch lives {
-            case 3:
-                hud.life1.isHidden = false
-                hud.life2.isHidden = false
-                hud.life3.isHidden = false
-            case 2:
-                hud.life1.isHidden = false
-                hud.life2.isHidden = false
-                hud.life3.isHidden = true
-            case 1:
-                hud.life1.isHidden = false
-                hud.life2.isHidden = true
-                hud.life3.isHidden = true
-            case 0:
-                hud.life1.isHidden = true
-                hud.life2.isHidden = true
-                hud.life3.isHidden = true
+            
+            // updating displaying lives
+            updateLives(withNumber: lives)
+            
+            if lives == 0 {
                 
+                // saving scores
                 gameSettings.currentScore = hud.score
                 gameSettings.saveScores()
                 
-                let transition = SKTransition.doorsCloseVertical(withDuration: 1)
-                let gameOverScene = GameOverScene(size: self.size)
-                gameOverScene.scaleMode = .aspectFill
-                self.scene!.view?.presentScene(gameOverScene, transition: transition)
-            default:
-                break
+                // scene transition
+                sceneTransition(to: GameOverScene(size: self.size),
+                                with: .doorsCloseVertical(withDuration: 1),
+                                andBackScene: false)
             }
         }
     }
-    
+
     override func didMove(to view: SKView) {
         
         gameSettings.loadGameSettings()
-        
-        if gameSettings.isMusic {
-            if backgroundMusic == nil {
-                if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
-                    backgroundMusic = SKAudioNode(url: musicURL)
-                    addChild(backgroundMusic)
-                }
-            }
-        } else if backgroundMusic != nil {
-            backgroundMusic.removeFromParent()
-            backgroundMusic = nil
-        }
+        playMusic()
         
         self.scene?.isPaused = false
-        
         guard sceneManager.gameScene == nil else { return }
-        
         sceneManager.gameScene = self
         
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector.zero
         
         configureStartScene()
+        createHUD()
         spawnIslands()
         spawnClouds()
         player.performFly()
-        spawnPowerUp()
         spawnEnemies()
-        createHUD()
+        spawnPowerUp()
     }
     
     fileprivate func createHUD() {
+        
         addChild(hud)
         hud.configureUI(screenSize: screenSize)
     }
@@ -108,6 +82,37 @@ class GameScene: ParentScene {
         
         player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
         self.addChild(player)
+    }
+        
+    // updating displaying lives
+    fileprivate func updateLives(withNumber: Int) {
+        
+        let array = [hud.life3, hud.life2, hud.life1]
+        let array1 = array[0..<withNumber]
+        let array2 = array.filter { !array1.contains($0) }
+        
+        for i in array1 {
+            i.isHidden = false
+        }
+        for i in array2 {
+            i.isHidden = true
+        }
+    }
+    
+    // playing music
+    fileprivate func playMusic() {
+        
+        if gameSettings.isMusic {
+            if backgroundMusic == nil {
+                if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
+                    backgroundMusic = SKAudioNode(url: musicURL)
+                    addChild(backgroundMusic)
+                }
+            }
+        } else if backgroundMusic != nil {
+            backgroundMusic.removeFromParent()
+            backgroundMusic = nil
+        }
     }
     
     fileprivate func spawnIslands() {

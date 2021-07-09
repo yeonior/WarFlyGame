@@ -13,11 +13,23 @@ class ParentScene: SKScene {
     let sceneManager = SceneManager.shared
     var backScene: SKScene?
     
-    func setHeader(withName name: String?, andBackground backgroundName: String) {
+    // header on scene
+    func setHeader(withTitle title: String?, andBackground backgroundName: String) {
         
-        let header = ButtonNode(titled: name, backgroundName: backgroundName)
+        let header = ButtonNode(titled: title, backgroundName: backgroundName)
         header.position = CGPoint(x: self.frame.midX, y: self.frame.midY + 150)
         self.addChild(header)
+    }
+    
+    // scene transition
+    func sceneTransition(to scene: ParentScene, with transition: SKTransition, andBackScene backScene: Bool) {
+
+        let scene = scene
+        scene.scaleMode = .aspectFill
+        if backScene {
+            scene.backScene = self
+        }
+        self.scene!.view?.presentScene(scene, transition: transition)
     }
     
     override init(size: CGSize) {
