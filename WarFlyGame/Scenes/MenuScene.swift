@@ -22,8 +22,7 @@ class MenuScene: ParentScene {
         
         // buttons
         let titles = ["play", "options", "best"]
-        for (index, title) in titles.enumerated(){
-            
+        for (index, title) in titles.enumerated(){            
             let button = ButtonNode(titled: title, backgroundName: "button_background")
             button.setScale(0.8)
             button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 70))

@@ -68,10 +68,10 @@ class PlayerPlane: SKSpriteNode {
         
         self.position.x += xAcceleration * 50
         
-        if self.position.x < -70 {
-            self.position.x = screenSize.width + 70
-        } else if self.position.x > screenSize.width + 70 {
-            self.position.x = -70
+        if self.position.x < -1 {
+            self.position.x = screenSize.width + 1
+        } else if self.position.x > screenSize.width + 1 {
+            self.position.x = -1
         }
     }
     

@@ -13,6 +13,7 @@ class GameScene: ParentScene {
     fileprivate var player: PlayerPlane!
     fileprivate let hud = HUD()
     fileprivate let screenSize = UIScreen.main.bounds.size
+    fileprivate let sprites = ["sprite", "bluePowerUp", "greenPowerUp"]
     fileprivate var backgroundMusic: SKAudioNode!
     fileprivate var lives = 3 {
         didSet {
@@ -33,7 +34,9 @@ class GameScene: ParentScene {
             }
         }
     }
-
+    
+    // MARK: - Methods
+    
     override func didMove(to view: SKView) {
         
         gameSettings.loadGameSettings()
@@ -54,13 +57,15 @@ class GameScene: ParentScene {
         spawnEnemies()
         spawnPowerUp()
     }
-    
+      
+    // HUD creation
     fileprivate func createHUD() {
         
-        addChild(hud)
+        self.addChild(hud)
         hud.configureUI(screenSize: screenSize)
     }
 
+    // scene configuration
     fileprivate func configureStartScene() {
         
         // screen settings
@@ -69,18 +74,21 @@ class GameScene: ParentScene {
         background.size = self.size
         self.addChild(background)
         
-        // screen size
-        let screen = UIScreen.main.bounds
-        
-        // sprites
-        let island1 = Island.populate(at: CGPoint(x: Int(screen.size.width) / 2 - 100, y: Int(screen.size.height) / 2 + 100))
+        // sprites populating
+        let island1 = Island.populate(at: CGPoint(x: Int(screenSize.width) / 2 - 100,
+                                                  y: Int(screenSize.height) / 2 + 100))
         self.addChild(island1)
-        let island2 = Island.populate(at: CGPoint(x: Int(screen.size.width) / 2 + 70, y: Int(screen.size.height) / 2 + 300))
+        
+        let island2 = Island.populate(at: CGPoint(x: Int(screenSize.width) / 2 + 70,
+                                                  y: Int(screenSize.height) / 2 + 300))
         self.addChild(island2)
-        let cloud = Cloud.populate(at: CGPoint(x: Int(screen.size.width) / 2 + 40, y: Int(screen.size.height) / 2 - 200))
+        
+        let cloud = Cloud.populate(at: CGPoint(x: Int(screenSize.width) / 2 + 40,
+                                               y: Int(screenSize.height) / 2 - 200))
         self.addChild(cloud)
         
-        player = PlayerPlane.populate(at: CGPoint(x: screen.size.width / 2, y: 100))
+        player = PlayerPlane.populate(at: CGPoint(x: screenSize.width / 2,
+                                                  y: 100))
         self.addChild(player)
     }
         
@@ -106,7 +114,7 @@ class GameScene: ParentScene {
             if backgroundMusic == nil {
                 if let musicURL = Bundle.main.url(forResource: "backgroundMusic", withExtension: "m4a") {
                     backgroundMusic = SKAudioNode(url: musicURL)
-                    addChild(backgroundMusic)
+                    self.addChild(backgroundMusic)
                 }
             }
         } else if backgroundMusic != nil {
@@ -115,97 +123,84 @@ class GameScene: ParentScene {
         }
     }
     
+    // different sprites spawning
     fileprivate func spawnIslands() {
         
-        let spawnIslandWait = SKAction.wait(forDuration: 4)
-        let spawnIslandAction = SKAction.run {
+        let waitAction = SKAction.wait(forDuration: 4)
+        let spawnAction = SKAction.run { [unowned self] in
             let island = Island.populate(at: nil)
             self.addChild(island)
         }
-        
-        let spawnIslandSequence = SKAction.sequence([spawnIslandWait, spawnIslandAction])
-        let spawnIslandForever = SKAction.repeatForever(spawnIslandSequence)
-        
-        run(spawnIslandForever)
+        let actionsSequence = SKAction.sequence([waitAction, spawnAction])
+        let actionsSequenceForever = SKAction.repeatForever(actionsSequence)
+        run(actionsSequenceForever)
     }
     
     fileprivate func spawnClouds() {
         
-        let spawnCloudWait = SKAction.wait(forDuration: 2)
-        let spawnCloudAction = SKAction.run {
+        let waitAction = SKAction.wait(forDuration: 2)
+        let spawnAction = SKAction.run { [unowned self] in
             let cloud = Cloud.populate(at: nil)
             self.addChild(cloud)
         }
-        
-        let spawnCloudSequence = SKAction.sequence([spawnCloudWait, spawnCloudAction])
-        let spawnCloudForever = SKAction.repeatForever(spawnCloudSequence)
-        
-        run(spawnCloudForever)
+        let actionsSequence = SKAction.sequence([waitAction, spawnAction])
+        let actionsSequenceForever = SKAction.repeatForever(actionsSequence)
+        run(actionsSequenceForever)
     }
     
     fileprivate func spawnPowerUp() {
         
-        let spawnAction = SKAction.run {
-            
+        let randomDuration = Double(arc4random_uniform(15) + 10)
+        let waitAction = SKAction.wait(forDuration: randomDuration)
+        let spawnAction = SKAction.run { [unowned self] in
             let randomNumber = Int(arc4random_uniform(2))
             let powerUp = randomNumber == 1 ? BluePowerUp() : GreenPowerUp()
-            
             let randomPositionX = arc4random_uniform(UInt32(self.size.width - 30))
             powerUp.position = CGPoint(x: CGFloat(randomPositionX), y: self.size.height + 100)
-            
             powerUp.startMovement()
             self.addChild(powerUp)
         }
-        
-        let randomDuration = Double(arc4random_uniform(15) + 10)
-        let waitAction = SKAction.wait(forDuration: randomDuration)
-        
         let actionsSequence = SKAction.sequence([waitAction, spawnAction])
         let actionsSequenceForever = SKAction.repeatForever(actionsSequence)
-        
         run(actionsSequenceForever)
     }
     
-    fileprivate func spawnGroupOfEnemies() {
+    fileprivate func spawnGroupOfEnemies(with count: Int) {
         
-        let spawnEnemyWait = SKAction.wait(forDuration: 1)
-        let spawnEnemyAction = SKAction.run { [unowned self] in
-            let enemyTextureAtlas1 = Assets.shared.enemy_1Atlas
-            let enemyTextureAtlas2 = Assets.shared.enemy_2Atlas
-            SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
-                
-                let randomNumber = Int(arc4random_uniform(2))
-                let arrayofAtlases = [enemyTextureAtlas1, enemyTextureAtlas2]
-                let textureAtlas = arrayofAtlases[randomNumber]
+        let enemyTextureAtlas1 = Assets.shared.enemy_1Atlas
+        let enemyTextureAtlas2 = Assets.shared.enemy_2Atlas
+        SKTextureAtlas.preloadTextureAtlases([enemyTextureAtlas1, enemyTextureAtlas2]) { [unowned self] in
+            
+            let randomNumber = Int(arc4random_uniform(2))
+            let arrayofAtlases = [enemyTextureAtlas1, enemyTextureAtlas2]
+            let textureAtlas = arrayofAtlases[randomNumber]
+            let waitAction = SKAction.wait(forDuration: 1)
+            let spawnAction = SKAction.run { [unowned self] in
                 let textureNamesSorted = textureAtlas.textureNames.sorted()
-                let enemyTexture = textureAtlas.textureNamed(textureNamesSorted[12])
-                
-                let enemy = Enemy(enemyTexture: enemyTexture)
+                let texture = textureAtlas.textureNamed(textureNamesSorted[12])
+                let enemy = Enemy(enemyTexture: texture)
                 enemy.position = CGPoint(x: self.size.width / 2, y: self.size.height + 50)
                 enemy.flySpiral()
-                addChild(enemy)
+                self.addChild(enemy)
             }
+            let actionsSequence = SKAction.sequence([waitAction, spawnAction])
+            let actionsSequenceForever = SKAction.repeat(actionsSequence, count: count)
+            run(actionsSequenceForever)
         }
-        
-        let spawnEmemySequence = SKAction.sequence([spawnEnemyWait, spawnEnemyAction])
-        let spawnEnemyRepeating = SKAction.repeat(spawnEmemySequence, count: 3)
-        
-        run(spawnEnemyRepeating)
     }
     
     fileprivate func spawnEnemies() {
         
-        let spawnEnemiesWait = SKAction.wait(forDuration: 5)
-        let spawnEmemiesAction = SKAction.run { [unowned self] in
-            self.spawnGroupOfEnemies()
+        let waitAction = SKAction.wait(forDuration: 5)
+        let spawnAction = SKAction.run { [unowned self] in
+            self.spawnGroupOfEnemies(with: 3)
         }
-        
-        let spawnEmemiesSequence = SKAction.sequence([spawnEmemiesAction, spawnEnemiesWait])
-        let spawnEnemiesRepeating = SKAction.repeatForever(spawnEmemiesSequence)
-        
-        run(spawnEnemiesRepeating)
+        let actionsSequence = SKAction.sequence([waitAction, spawnAction])
+        let actionsSequenceForever = SKAction.repeatForever(actionsSequence)
+        run(actionsSequenceForever)
     }
     
+    // player fire action
     fileprivate func playerFire() {
         
         let shot = YellowAmmo()
@@ -216,22 +211,19 @@ class GameScene: ParentScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        // location and node determination
         let location = touches.first?.location(in: self)
         let node = self.atPoint(location!)
         
+        // actions
         if node.name == "pause" {
-            
-            let transition = SKTransition.doorway(withDuration: 1.0)
-            let pauseScene = PauseScene(size: self.size)
-            pauseScene.scaleMode = .aspectFill
             sceneManager.gameScene = self
             self.scene?.isPaused = true
-            self.scene!.view?.presentScene(pauseScene, transition: transition)
-            
+            sceneTransition(to: PauseScene(size: self.size),
+                            with: .doorway(withDuration: 1),
+                            andBackScene: false)
         } else {
-            
             if hud.shots > 0 {
-                
                 playerFire()
                 hud.shots -= 1
             }
@@ -243,40 +235,28 @@ class GameScene: ParentScene {
         player.checkPosition()
         
         // deleting sprites
-        enumerateChildNodes(withName: "sprite") { node, _ in
-            
-            if node.position.y <= -200 {
-                node.removeFromParent()
+        for i in sprites {
+            enumerateChildNodes(withName: i) { node, _ in
+                if node.position.y <= -200 {
+                    node.removeFromParent()
+                }
             }
         }
-        
-        enumerateChildNodes(withName: "shotSprite") { node, _ in
-            
+
+        enumerateChildNodes(withName: "shotSprite") { [unowned self] node, _ in
             if node.position.y >= self.size.height + 100 {
-                node.removeFromParent()
-            }
-        }
-        
-        enumerateChildNodes(withName: "bluePowerUp") { node, _ in
-            
-            if node.position.y <= -100 {
-                node.removeFromParent()
-            }
-        }
-        
-        enumerateChildNodes(withName: "greenPowerUp") { node, _ in
-            
-            if node.position.y <= -100 {
                 node.removeFromParent()
             }
         }
     }
 }
 
+// MARK: - Extensions
 extension GameScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         
+        // contact actions with sounds and animations
         let explosion = SKEmitterNode(fileNamed: "EnemyExplosion")
         let contactPoint = contact.contactPoint
         explosion?.position = contactPoint
@@ -290,7 +270,8 @@ extension GameScene: SKPhysicsContactDelegate {
             if contact.bodyA.node?.name == "sprite" {
                 if contact.bodyA.node != nil {
                     contact.bodyA.node?.removeFromParent()
-                    lives -= 1
+                    
+                    lives -= 1 // action
                     
                     player.colisionToEnemy()
                     addChild(explosion!)
@@ -304,7 +285,8 @@ extension GameScene: SKPhysicsContactDelegate {
             } else {
                 if contact.bodyB.node != nil {
                     contact.bodyB.node?.removeFromParent()
-                    lives -= 1
+                    
+                    lives -= 1 // action
                     
                     player.colisionToEnemy()
                     addChild(explosion!)
@@ -323,14 +305,18 @@ extension GameScene: SKPhysicsContactDelegate {
                 
                 if contact.bodyA.node?.name == "bluePowerUp" {
                     contact.bodyA.node?.removeFromParent()
-                    lives += 1
+                    
+                    hud.shots += 5 // action
+                    
                     player.bluePowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                     }
                 } else if contact.bodyB.node?.name == "bluePowerUp" {
                     contact.bodyB.node?.removeFromParent()
-                    lives += 1
+                    
+                    hud.shots += 5 // action
+                    
                     player.bluePowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
@@ -339,14 +325,18 @@ extension GameScene: SKPhysicsContactDelegate {
                 
                 if contact.bodyA.node?.name == "greenPowerUp" {
                     contact.bodyA.node?.removeFromParent()
-                    hud.shots += 5
+                    
+                    if lives < 3 { lives += 1 } // action
+                    
                     player.greenPowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
                     }
                 } else if contact.bodyB.node?.name == "greenPowerUp" {
                     contact.bodyB.node?.removeFromParent()
-                    hud.shots += 5
+                    
+                    if lives < 3 { lives += 1 } // action
+                    
                     player.greenPowerUp()
                     if gameSettings.isSound {
                         self.run(SKAction.playSoundFileNamed("powerupSound", waitForCompletion: false))
@@ -357,10 +347,11 @@ extension GameScene: SKPhysicsContactDelegate {
         case [.enemy, .shot]:
             
             if contact.bodyA.node?.parent != nil && contact.bodyB.node?.parent != nil {
-                
                 contact.bodyA.node?.removeFromParent()
                 contact.bodyB.node?.removeFromParent()
-                hud.score += 5
+                
+                hud.score += 5 // action
+                
                 addChild(explosion!)
                 if gameSettings.isSound {
                     self.run(SKAction.playSoundFileNamed("hitSound", waitForCompletion: false))
@@ -373,24 +364,5 @@ extension GameScene: SKPhysicsContactDelegate {
         default:
             preconditionFailure("Wrong category!")
         }
-        
-        /* let bodyA = contact.bodyA.categoryBitMask
-        let bodyB = contact.bodyB.categoryBitMask
-        let player = BitMaskCategory.player
-        let enemy = BitMaskCategory.enemy
-        let powerUp = BitMaskCategory.powerUp
-        let shot = BitMaskCategory.shot
-        
-        if bodyA == player && bodyB == enemy || bodyB == player && bodyA == enemy {
-            print("1")
-        } else if bodyA == player && bodyB == powerUp || bodyB == player && bodyA == powerUp {
-            print("2")
-        } else if bodyA == enemy && bodyB == shot || bodyB == enemy && bodyA == shot {
-            print("3")
-        } */
-    }
-    
-    func didEnd(_ contact: SKPhysicsContact) {
-        
     }
 }
