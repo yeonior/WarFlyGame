@@ -14,6 +14,7 @@ class HUD: SKNode {
     let shotsIcon = SKSpriteNode(imageNamed: "shots")
     let shotsLabel = SKLabelNode(text: "10")
     let menuButton = SKSpriteNode(imageNamed: "menu")
+    let countdownLabel = SKLabelNode(text: "5")
     let life1 = SKSpriteNode(imageNamed: "life")
     let life2 = SKSpriteNode(imageNamed: "life")
     let life3 = SKSpriteNode(imageNamed: "life")
@@ -24,6 +25,15 @@ class HUD: SKNode {
     
     var shots = 10 {
         didSet { shotsLabel.text = shots.description }
+    }
+    
+    var count = 5 {
+        didSet {
+            countdownLabel.text = count.description
+            if count == 0 {
+                countdownLabel.isHidden = true
+            }
+        }
     }
     
     func configureUI(screenSize: CGSize) {
@@ -62,6 +72,13 @@ class HUD: SKNode {
         menuButton.zPosition = 100
         menuButton.name = "pause"
         addChild(menuButton)
+        
+        countdownLabel.verticalAlignmentMode = .center
+        countdownLabel.position = CGPoint(x: screenSize.width / 2, y: screenSize.height / 2)
+        countdownLabel.zPosition = 100
+        countdownLabel.fontName = "AmericanTypewriter-Bold"
+        countdownLabel.fontSize = 100
+        addChild(countdownLabel)
         
         let lifes = [life1, life2, life3]
         for (index, life) in lifes.enumerated() {

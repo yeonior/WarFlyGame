@@ -50,6 +50,7 @@ class GameScene: ParentScene {
         
         configureStartScene()
         createHUD()
+        startCountdown()
         spawnIslands()
         spawnClouds()
         player.performFly()
@@ -89,6 +90,18 @@ class GameScene: ParentScene {
         player = PlayerPlane.populate(at: CGPoint(x: screenSize.width / 2,
                                                   y: 100))
         self.addChild(player)
+    }
+    
+    // countdowning
+    fileprivate func startCountdown() {
+        
+        let waitAction = SKAction.wait(forDuration: 1.0)
+        let countAction = SKAction.run {
+            self.hud.count -= 1
+        }
+        let actionsSequence = SKAction.sequence([waitAction, countAction])
+        let fullAction = SKAction.repeat(actionsSequence, count: 5)
+        run(fullAction)
     }
         
     // updating displaying lives
