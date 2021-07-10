@@ -29,8 +29,7 @@ class GameScene: ParentScene {
                 
                 // scene transition
                 sceneTransition(to: GameOverScene(size: self.size),
-                                with: .doorsCloseVertical(withDuration: 1),
-                                andBackScene: false)
+                                withBackScene: false)
             }
         }
     }
@@ -220,8 +219,7 @@ class GameScene: ParentScene {
             sceneManager.gameScene = self
             self.scene?.isPaused = true
             sceneTransition(to: PauseScene(size: self.size),
-                            with: .doorway(withDuration: 1),
-                            andBackScene: false)
+                            withBackScene: false)
         } else {
             if hud.shots > 0 {
                 playerFire()

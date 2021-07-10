@@ -17,19 +17,12 @@ class MenuScene: ParentScene {
             Assets.shared.isLoaded = true
         }
         
-        // header
+        // header setting
         setHeader(withTitle: nil, andBackground: "header1")
         
-        // buttons
-        let titles = ["play", "options", "best"]
-        for (index, title) in titles.enumerated(){            
-            let button = ButtonNode(titled: title, backgroundName: "button_background")
-            button.setScale(0.8)
-            button.position = CGPoint(x: self.frame.midX, y: self.frame.midY - CGFloat(index * 70))
-            button.name = title
-            button.label.name = title
-            addChild(button)
-        }
+        // buttons setting
+        let buttons = ["play", "options", "best"]
+        setButtons(from: buttons, withOffsetY: 0)
     }
      
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -38,21 +31,18 @@ class MenuScene: ParentScene {
         let location = touches.first?.location(in: self)
         let node = self.atPoint(location!)
         
-        // scene determination
+        // actions
         if node.name == "play" {
             sceneTransition(to: GameScene(size: self.size),
-                            with: .crossFade(withDuration: 1),
-                            andBackScene: false)
+                            withBackScene: false)
             
         } else if node.name == "options" {
             sceneTransition(to: OptionsScene(size: self.size),
-                            with: .crossFade(withDuration: 1),
-                            andBackScene: true)
+                            withBackScene: true)
             
         } else if node.name == "best" {
             sceneTransition(to: BestScene(size: self.size),
-                            with: .crossFade(withDuration: 1),
-                            andBackScene: true)
+                            withBackScene: true)
         }
     }
 }
